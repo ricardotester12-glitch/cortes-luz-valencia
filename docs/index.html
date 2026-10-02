@@ -53,6 +53,19 @@ select{font:inherit;padding:8px 10px;border-radius:8px;border:1px solid var(--bo
 .legend i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin-right:5px}
 .tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--surface);font-size:12px;padding:6px 8px;border-radius:6px;display:none;z-index:9;white-space:nowrap}
 ul{margin:0;padding-left:18px}
+.scroll{overflow-x:auto}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:13px;padding:4px 10px;border-radius:999px;border:1px solid var(--border);background:var(--page);font-variant-numeric:tabular-nums}
+.chip b{font-weight:600}
+.chip.yo{border-color:var(--critical)}
+.alerta{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;padding:10px 0;border-bottom:1px solid var(--border)}
+.alerta:last-child{border-bottom:0}
+.alerta .cuando{font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.tag{font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;align-self:start;white-space:nowrap}
+.tag.off{background:color-mix(in srgb,var(--critical) 15%,transparent);color:var(--critical)}
+.tag.on{background:color-mix(in srgb,var(--good) 15%,transparent);color:var(--good)}
+.estadoc{font-size:11px;color:var(--ink-3)}
+#registro td{font-variant-numeric:tabular-nums;white-space:nowrap}
 li{margin:4px 0}
 .metric{font-size:28px;font-weight:700;font-variant-numeric:tabular-nums}
 .metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
@@ -73,6 +86,8 @@ td,th{padding:3px 6px;border-bottom:1px solid var(--border);text-align:left}
     <div class="sub" id="urbs" style="margin-top:6px"></div>
   </div>
   <div class="card"><div class="estado" id="estado"></div></div>
+  <div class="card"><h2>Ahora mismo en tu zona</h2><div id="zona"></div></div>
+  <div class="card"><h2>Alertas</h2><div id="alertas"></div></div>
   <div class="card"><h2>Próximas 24 horas: franjas con riesgo alto</h2><div class="franjas" id="franjas"></div></div>
   <div class="card">
     <h2>Probabilidad de corte por hora</h2>
@@ -84,6 +99,7 @@ td,th{padding:3px 6px;border-bottom:1px solid var(--border);text-align:left}
     <div class="heat" id="heat"></div>
     <div class="legend"><span><i style="background:var(--off)"></i>Sin luz</span><span><i style="background:var(--on)"></i>Con luz</span><span><i class="cell nd" style="height:12px"></i>Sin reportes</span></div>
   </div>
+  <div class="card"><h2>Registro de cortes</h2><div class="scroll"><table id="registro"></table></div></div>
   <div class="card"><h2>Se apagan junto con tu circuito</h2><div id="comp"></div></div>
   <div class="card"><h2>¿Qué tan confiable es?</h2><div id="bt"></div></div>
   <p class="nota">Datos: canal público Monitor Vecinal (reportes de vecinos). Corpoelec no publica un cronograma fijo; esto es un estimado estadístico, no un aviso oficial.</p>
@@ -96,7 +112,9 @@ function showTip(e,txt){tip.textContent=txt;tip.style.display='block';const x=Ma
 document.addEventListener('pointerdown',e=>{if(!e.target.closest('[data-tip]'))tip.style.display='none'});
 function bindTip(el,txt){el.dataset.tip=1;el.addEventListener('pointermove',e=>showTip(e,txt));el.addEventListener('pointerenter',e=>showTip(e,txt));el.addEventListener('pointerleave',()=>tip.style.display='none')}
 
-let D;
+let D, A=[];
+const fmt=s=>`${s.slice(8,10)}/${s.slice(5,7)} ${s.slice(11)}`;
+fetch('alertas.json?'+Date.now()).then(r=>r.ok?r.json():[]).then(a=>{A=a;if(D)render()}).catch(()=>{});
 fetch('data.json?'+Date.now()).then(r=>r.json()).then(d=>{
   D=d;
   $('actualizado').textContent='Actualizado: '+d.actualizado.replace(' ',' a las ')+' (hora de Venezuela)';
@@ -117,6 +135,19 @@ function render(){
   $('estado').innerHTML=c.en_curso_desde
     ?`<span class="dot" style="background:var(--critical)"></span><div><b>Sin luz</b><div class="sub">Según el canal, desde las ${c.en_curso_desde.slice(11)} del ${c.en_curso_desde.slice(8,10)}/${c.en_curso_desde.slice(5,7)}</div></div>`
     :`<span class="dot" style="background:var(--good)"></span><div><b>Con luz</b><div class="sub">No hay corte reportado en el último reporte del canal</div></div>`;
+  // zona
+  const sinLuz=Object.values(D.circuitos).filter(x=>x.zona===c.zona&&x.en_curso_desde).sort((a,b)=>a.en_curso_desde<b.en_curso_desde?-1:1);
+  $('zona').innerHTML=sinLuz.length?`<div class="sub" style="margin-bottom:8px">${sinLuz.length} circuito${sinLuz.length>1?'s':''} sin luz en ${c.zona}</div><div class="chips">`+
+    sinLuz.map(x=>`<span class="chip${x.circuito===c.circuito?' yo':''}"><b>${x.circuito}</b> desde ${x.en_curso_desde.slice(11)}</span>`).join('')+'</div>'
+    :`<div class="vacio">Ningún circuito de ${c.zona} aparece sin luz en el último reporte.</div>`;
+  // alertas
+  const propias=A.filter(a=>a.circuito===c.circuito);
+  const lista=propias.length?propias:A;
+  $('alertas').innerHTML=lista.length?(propias.length?'':'<div class="sub" style="margin-bottom:6px">Sin alertas de este circuito todavía. Estas son las últimas de los circuitos que vigilas:</div>')+
+    lista.slice(0,15).map(a=>`<div class="alerta"><span class="tag ${a.tipo==='se fue'?'off':'on'}">${a.tipo==='se fue'?'Se fue':'Volvió'}</span><div><div>${a.texto.replace(/^\S+\s/,'')}</div><div class="cuando">Detectada ${fmt(a.detectada)}${a.enviada?' · enviada por Telegram':''}</div></div></div>`).join('')
+    :'<div class="vacio">Todavía no hay alertas. Aparecerán aquí cuando se vaya la luz en Cuatricentenario, Ceiba, Miranda o Trigal.</div>';
+  // registro
+  $('registro').innerHTML='<tr><th>Se fue</th><th>Volvió</th><th>Duración</th><th></th></tr>'+c.registro.map(r=>`<tr><td>${fmt(r.inicio)}</td><td>${r.estado==='en curso'?'sigue sin luz':(r.estado==='estimado'?'~':'')+r.fin.slice(11)}</td><td>${r.estado==='en curso'?'en curso':Math.floor(r.minutos/60)+'h '+r.minutos%60+'m'}</td><td class="estadoc">${r.estado==='confirmado'?'':r.estado}</td></tr>`).join('');
   // franjas próximas 24h
   const fr=[];let cur=null;
   for(let i=1;i<=24;i++){const h=(H+i)%24,p=c.perfil[h],dia=(H+i)>=24?'Mañana':'Hoy';

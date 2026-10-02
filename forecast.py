@@ -39,24 +39,39 @@ def cargar(ahora):
         ventana = timedelta(hours=6) if int(r["resueltos"]) else timedelta(minutes=30)
         cobertura[r["zona"]].append((t - ventana, t))
 
-    cortes, urbs, en_curso = defaultdict(list), {}, {}
+    cortes, urbs, en_curso, registro = defaultdict(list), {}, {}, defaultdict(list)
     for c in leer(os.path.join(DATA, "cortes.csv")):
         k = (c["zona"], c["circuito"])
         urbs[k] = c["urbanizaciones"]
         ini = p(c["inicio"])
         if c["fin"]:
-            fin = p(c["fin"])
+            fin, estado = p(c["fin"]), "confirmado"
         elif c["ultimo_visto_off"] == ultimo[c["zona"]] and ahora - p(c["ultimo_visto_off"]) < timedelta(hours=2):
-            fin = ahora
+            fin, estado = ahora, "en curso"
             en_curso[k] = c["inicio"]
         else:
-            fin = max(p(c["ultimo_visto_off"]), ini + DUR_TIPICA)
+            fin, estado = max(p(c["ultimo_visto_off"]), ini + DUR_TIPICA), "estimado"
         cortes[k].append((ini, fin))
+        registro[k].append((ini, fin, estado))
     for m in leer(os.path.join(DATA, "manual.csv")):
         k = (m["zona"], m["circuito"])
         cortes[k].append((p(m["inicio"]), p(m["fin"])))
+        registro[k].append((p(m["inicio"]), p(m["fin"]), "anotado a mano"))
         cobertura[m["zona"]].append((p(m["inicio"]), p(m["fin"])))
-    return cortes, cobertura, urbs, en_curso
+    return cortes, cobertura, urbs, en_curso, registro
+
+
+def lista_registro(eventos):
+    """Cortes del más reciente al más viejo, fusionando reportes duplicados del mismo corte."""
+    out = []
+    for ini, fin, estado in sorted(eventos):
+        if out and ini <= out[-1][1] and ini - out[-1][0] < timedelta(minutes=30):
+            if out[-1][2] not in ("confirmado", "en curso"):  # un dato confirmado manda sobre uno estimado
+                out[-1] = (out[-1][0], fin, estado)
+            continue
+        out.append((ini, fin, estado))
+    return [{"inicio": a.strftime(FMT), "fin": b.strftime(FMT), "minutos": int((b - a).total_seconds() // 60),
+             "estado": e} for a, b, e in reversed(out)][:40]
 
 
 def matriz(cortes, cobertura, zona):
@@ -135,7 +150,7 @@ def companeros(k, mats_todos):
 
 def main():
     ahora = datetime.now(VE).replace(tzinfo=None, second=0, microsecond=0)
-    cortes, cobertura, urbs, en_curso = cargar(ahora)
+    cortes, cobertura, urbs, en_curso, registro = cargar(ahora)
     mats = {k: matriz(v, cobertura, k[0]) for k, v in cortes.items()}
     manana = ahora.date() + timedelta(days=1)
     salida = {"actualizado": ahora.strftime(FMT), "principal": CONFIG["circuito"], "zona": CONFIG["zona"],
@@ -151,6 +166,7 @@ def main():
                 "zona": zona, "circuito": k[1], "urbanizaciones": urbs.get(k, ""),
                 "perfil": [round(x, 3) for x in prob],
                 "en_curso_desde": en_curso.get(k),
+                "registro": lista_registro(registro[k]),
                 "historial": [{"fecha": d.isoformat(), "horas": f} for d, f in sorted(m.items())][-14:],
                 "backtest": backtest(m, mz),
                 "companeros": companeros(k, {kk: mm for kk, mm in mats.items()}),
