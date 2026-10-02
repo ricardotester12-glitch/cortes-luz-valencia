@@ -138,5 +138,16 @@ def main():
         print("Diagnóstico:", DIAG)
 
 
+def prueba():
+    """Envía un mensaje de prueba por cada canal y deja el resultado en docs/diagnostico.json."""
+    texto = "🧪 PRUEBA de configuración: si te llega este mensaje, las alertas de cortes de luz funcionan."
+    print("Telegram:", telegram(texto), "| Correo:", correo("🧪 Prueba de alertas de cortes de luz", texto))
+    DIAG["fecha"] = datetime.now(VE).strftime(FMT) + " (prueba)"
+    with open(os.path.join(RAIZ, "docs", "diagnostico.json"), "w", encoding="utf-8") as f:
+        json.dump(DIAG, f, ensure_ascii=False, indent=1)
+    print("Diagnóstico:", DIAG)
+
+
 if __name__ == "__main__":
-    main()
+    import sys
+    prueba() if "--prueba" in sys.argv else main()

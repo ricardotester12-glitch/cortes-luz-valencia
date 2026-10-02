@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: "*/10 * * * *"   # cada 10 minutos (GitHub puede retrasarlo unos minutos)
   workflow_dispatch:
+    inputs:
+      prueba:
+        description: "Enviar un mensaje de prueba por Telegram y correo"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -23,7 +28,7 @@ jobs:
       - run: pip install requests
       - run: python collect.py
       - run: python forecast.py
-      - run: python alert.py
+      - run: python alert.py ${{ inputs.prueba && '--prueba' || '' }}
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
