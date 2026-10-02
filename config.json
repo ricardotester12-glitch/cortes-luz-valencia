@@ -1,5 +1,6 @@
 {
   "zona": "ValenciaNorte",
   "circuito": "Cuatricentenario",
-  "alertar": ["Cuatricentenario", "Ceiba", "Miranda", "Trigal"]
+  "aviso_previo_min": 30,
+  "umbral_aviso": 0.35
 }

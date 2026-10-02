@@ -148,16 +148,38 @@ def companeros(k, mats_todos):
     return [{"circuito": c, "coincidencia": round(j, 2)} for j, c in sorted(res, reverse=True)[:4] if j >= 0.3]
 
 
+def bloques_zona(registro, zona, hasta, dias=14):
+    """Horas de inicio de los bloques de cortes que se repiten en la zona (primer cuartil de cada grupo)."""
+    mins = sorted(ini.hour * 60 + ini.minute for (z, _), evs in registro.items() if z == zona
+                  for ini, _, est in evs if est != "anotado a mano" and (hasta - ini.date()).days <= dias)
+    grupos, actual = [], []
+    for m in mins:
+        if actual and m - actual[-1] > 40:
+            grupos.append(actual)
+            actual = []
+        actual.append(m)
+    if actual:
+        grupos.append(actual)
+    return [f"{g[len(g) // 4] // 60:02d}:{g[len(g) // 4] % 60:02d}" for g in grupos if len(g) >= 3]  # primer cuartil: mejor avisar temprano
+
+
+def prob_bloque(perfil_c, hhmm):
+    """Probabilidad de que el circuito quede sin luz en el bloque que arranca a hhmm."""
+    h, m = map(int, hhmm.split(":"))
+    return perfil_c[(h + (m + 60) // 60) % 24]
+
+
 def main():
     ahora = datetime.now(VE).replace(tzinfo=None, second=0, microsecond=0)
     cortes, cobertura, urbs, en_curso, registro = cargar(ahora)
     mats = {k: matriz(v, cobertura, k[0]) for k, v in cortes.items()}
     manana = ahora.date() + timedelta(days=1)
     salida = {"actualizado": ahora.strftime(FMT), "principal": CONFIG["circuito"], "zona": CONFIG["zona"],
-              "circuitos": {}}
+              "circuitos": {}, "bloques": {}}
     for zona in {k[0] for k in mats}:
         mz = [m for k, m in mats.items() if k[0] == zona]
         prior = prior_zona(mz, manana)
+        salida["bloques"][zona] = bloques_zona(registro, zona, ahora.date())
         for k, m in mats.items():
             if k[0] != zona:
                 continue
@@ -179,6 +201,7 @@ def main():
     if c:
         print(CONFIG["circuito"], "perfil:", " ".join(f"{h}h:{round(x*100)}" for h, x in enumerate(c["perfil"])))
         print("backtest:", c["backtest"], "| compañeros:", c["companeros"])
+        print("bloques:", [(b, round(prob_bloque(c["perfil"], b) * 100)) for b in salida["bloques"][CONFIG["zona"]]])
 
 
 if __name__ == "__main__":

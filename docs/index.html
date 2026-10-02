@@ -12,18 +12,18 @@
 :root{
   --bg:#f2f4f6; --panel:#ffffff; --line:#e1e5ea; --ink:#0f1720; --ink-2:#4a5563; --ink-3:#7b8794;
   --s0:#eef2f6; --s1:#cde2fb; --s2:#9ec5f4; --s3:#6da7ec; --s4:#3987e5; --s5:#256abf; --s6:#184f95; --s7:#0d366b;
-  --cut:#184f95; --cut-soft:#6da7ec; --sel:#e9f1fc; --crit:#c93434; --good:#0b8f0b;
+  --cut:#184f95; --cut-soft:#6da7ec; --sel:#e9f1fc; --crit:#c93434; --good:#0b8f0b; --warn:#fab219; --warn-ink:#8a5a00;
   --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#0c1015; --panel:#151b22; --line:#28313c; --ink:#e9edf2; --ink-2:#aab4c0; --ink-3:#7d8896;
   --s0:#1b232d; --s1:#173252; --s2:#184f95; --s3:#256abf; --s4:#3987e5; --s5:#6da7ec; --s6:#9ec5f4; --s7:#cde2fb;
-  --cut:#5598e7; --cut-soft:#256abf; --sel:#1a2737; --crit:#ef5b5b; --good:#2fbf2f; color-scheme:dark;
+  --cut:#5598e7; --cut-soft:#256abf; --sel:#1a2737; --crit:#ef5b5b; --good:#2fbf2f; --warn:#fab219; --warn-ink:#f5c04a; color-scheme:dark;
 }}
 :root[data-theme="dark"]{
   --bg:#0c1015; --panel:#151b22; --line:#28313c; --ink:#e9edf2; --ink-2:#aab4c0; --ink-3:#7d8896;
   --s0:#1b232d; --s1:#173252; --s2:#184f95; --s3:#256abf; --s4:#3987e5; --s5:#6da7ec; --s6:#9ec5f4; --s7:#cde2fb;
-  --cut:#5598e7; --cut-soft:#256abf; --sel:#1a2737; --crit:#ef5b5b; --good:#2fbf2f; color-scheme:dark;
+  --cut:#5598e7; --cut-soft:#256abf; --sel:#1a2737; --crit:#ef5b5b; --good:#2fbf2f; --warn:#fab219; --warn-ink:#f5c04a; color-scheme:dark;
 }
 *{box-sizing:border-box}
 html,body{margin:0}
@@ -103,6 +103,9 @@ select:focus-visible,button:focus-visible{outline:2px solid var(--s4);outline-of
 .tag{font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;white-space:nowrap;align-self:start}
 .tag.off{background:color-mix(in srgb,var(--crit) 14%,transparent);color:var(--crit)}
 .tag.on{background:color-mix(in srgb,var(--good) 14%,transparent);color:var(--good)}
+.tag.av{background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn-ink)}
+.tag.re{background:color-mix(in srgb,var(--s4) 14%,transparent);color:var(--s5)}
+.alerta .txt{white-space:pre-line}
 .cuando{font-size:11px;color:var(--ink-3);font-family:var(--mono)}
 .feed{max-height:340px;overflow-y:auto}
 table{border-collapse:collapse;width:100%;font-size:13px}
@@ -259,10 +262,12 @@ function render(){
     bindTip(el,`<b>${n}</b><br>Se fue: ${fmt(i)}<br>${e==='en curso'?'Sigue sin luz':'Volvió: '+(e==='estimado'?'~':'')+fmt(f)}<br>${e==='en curso'?'':'Duración: '+dur(+m)+'<br>'}<span style="opacity:.75">${e}</span>`)});
 
   // ---- alertas y zona ahora
-  const propias=A.filter(a=>a.circuito===c.circuito), lista=propias.length?propias:A;
-  $('alertas').innerHTML=lista.length?(propias.length?'':'<div class="sub" style="margin-bottom:6px">Sin alertas de este circuito. Últimas de los circuitos vigilados:</div>')+
-    lista.slice(0,20).map(a=>`<div class="alerta"><span class="tag ${a.tipo==='se fue'?'off':'on'}">${a.tipo==='se fue'?'Se fue':'Volvió'}</span><div><div>${a.texto.replace(/^\S+\s/,'')}</div><div class="cuando">${fmt(a.detectada)}${a.enviada?' · Telegram ✓':''}</div></div></div>`).join('')
-    :'<div class="vacio">Todavía no hay alertas. Saldrán aquí, con la hora, cuando se vaya o vuelva la luz en Cuatricentenario, Ceiba, Miranda o Trigal.</div>';
+  const TAG={'se fue':['off','Se fue'],'volvió':['on','Volvió'],'aviso':['av','Aviso'],'resumen':['re','Pronóstico']};
+  const propias=A.filter(a=>a.circuito===c.circuito);
+  $('alertas').innerHTML=propias.length?propias.slice(0,20).map(a=>{const [cl,lb]=TAG[a.tipo]||['re',a.tipo];
+    return `<div class="alerta"><span class="tag ${cl}">${lb}</span><div><div class="txt">${a.texto.replace(/^\S+\s/,'')}</div><div class="cuando">${fmt(a.detectada)}${a.enviada?' · Telegram ✓':''}${a.correo?' · correo ✓':''}</div></div></div>`}).join('')
+    :(c.circuito===D.principal?'<div class="vacio">Todavía no hay alertas. Aquí verás, con la hora, el aviso unos 30 minutos antes de cada bloque probable, el pronóstico de las 6 a. m. y cuándo se va y vuelve la luz.</div>'
+      :`<div class="vacio">Las alertas son solo para ${D.principal}.</div>`);
   const sin=enZona.filter(([,x])=>x.en_curso_desde).sort((a,b)=>a[1].en_curso_desde<b[1].en_curso_desde?-1:1);
   $('zona-ahora').innerHTML=sin.length?'<div class="chips">'+sin.map(([k,x])=>`<button type="button" class="chip${k===KEY?' yo':''}" data-k="${k}">${x.circuito} · ${x.en_curso_desde.slice(11)}</button>`).join('')+'</div>'
     :`<div class="vacio">Ningún circuito de ${c.zona} sin luz en el último reporte.</div>`;
@@ -275,8 +280,11 @@ function render(){
   horas.forEach((h,i)=>{const p=c.perfil[h%24],el=document.createElement('div');el.className='fb'+(p>=.5?' alta':'')+(i===0?' ahora':'');el.style.height=Math.max(p*100,1.5)+'%';
     bindTip(el,`<b>${h>=24?'Mañana':'Hoy'} ${hh(h)} a ${hh(h+1)}</b><br>${pct(p)} de probabilidad de corte`);fc.appendChild(el)});
   $('fax').innerHTML=horas.map((h,i)=>`<span>${i===0?'ya':(h%3===0?h%24:'')}</span>`).join('');
-  const fr=[];let cur=null;horas.slice(1).forEach(h=>{const p=c.perfil[h%24],dia=h>=24?'Mañana':'Hoy';if(p>=.5){if(cur&&cur.dia===dia&&cur.fin===h){cur.fin=h+1;cur.max=Math.max(cur.max,p)}else fr.push(cur={dia,ini:h,fin:h+1,max:p})}else cur=null});
-  $('franjas').innerHTML=fr.length?fr.map(f=>`<div class="franja">${f.dia} <b>${hh(f.ini)} a ${hh(f.fin)}</b> · hasta ${pct(f.max)}</div>`).join(''):'<div class="vacio">Sin franjas de riesgo alto en las próximas 24 horas.</div>';
+  const bl=(D.bloques&&D.bloques[c.zona])||[];
+  const pb=b=>{const [h,m]=b.split(':').map(Number);return c.perfil[(h+Math.floor((m+60)/60))%24]};
+  $('franjas').innerHTML=bl.length?'<div class="sub" style="width:100%">Bloques de cortes de la zona y probabilidad de que le toque a '+c.circuito+':</div>'+
+    bl.map(b=>{const p=pb(b);return `<div class="franja"${p>=.5?' style="border-color:var(--s5)"':''}><b>${b}</b> · ${pct(p)}</div>`}).join('')
+    :'<div class="vacio">Todavía no hay suficientes cortes para detectar los bloques de la zona.</div>';
 
   // ---- matriz de la zona
   const step=p=>p<.05?'var(--s0)':`var(--s${Math.min(7,Math.max(1,Math.ceil(p*7)))})`;
