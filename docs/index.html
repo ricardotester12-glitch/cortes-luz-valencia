@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pronóstico de Cortes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --page:#f9f9f7; --surface:#fcfcfb; --border:#e4e3df; --ink:#0b0b0b; --ink-2:#52514e; --ink-3:#7a7974;
+  --s100:#cde2fb; --s250:#86b6ef; --s400:#3987e5; --s550:#1c5cab; --s700:#0d366b;
+  --off:#1c5cab; --on:#e8eef6; --nodata:#efeeea; --critical:#d03b3b; --good:#0ca30c;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --page:#0d0d0d; --surface:#1a1a19; --border:#2e2e2b; --ink:#fff; --ink-2:#c3c2b7; --ink-3:#8f8e86;
+  --s100:#184f95; --s250:#256abf; --s400:#3987e5; --s550:#6da7ec; --s700:#cde2fb;
+  --off:#5598e7; --on:#22303f; --nodata:#262624;
+}}
+:root[data-theme="dark"]{
+  --page:#0d0d0d; --surface:#1a1a19; --border:#2e2e2b; --ink:#fff; --ink-2:#c3c2b7; --ink-3:#8f8e86;
+  --s100:#184f95; --s250:#256abf; --s400:#3987e5; --s550:#6da7ec; --s700:#cde2fb;
+  --off:#5598e7; --on:#22303f; --nodata:#262624;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--ink);font:15px/1.45 Inter,system-ui,sans-serif}
+main{max-width:760px;margin:0 auto;padding:20px 16px 48px}
+h1{font-size:22px;margin:0 0 2px}
+h2{font-size:15px;margin:0 0 12px;font-weight:600}
+.sub{color:var(--ink-2);font-size:13px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin-top:14px}
+select{font:inherit;padding:8px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--ink);max-width:100%}
+.estado{display:flex;gap:12px;align-items:center}
+.dot{width:12px;height:12px;border-radius:50%;flex:none}
+.estado b{font-size:18px}
+.franjas{display:flex;flex-direction:column;gap:8px}
+.franja{display:flex;justify-content:space-between;gap:12px;padding:10px 12px;border-radius:8px;background:var(--page);border:1px solid var(--border)}
+.franja .pct{font-weight:700;font-variant-numeric:tabular-nums}
+.vacio{color:var(--ink-2)}
+.chart{position:relative}
+.bars{display:grid;grid-template-columns:repeat(24,1fr);gap:2px;height:140px;align-items:end;border-bottom:1px solid var(--border)}
+.bar{background:var(--s400);border-radius:4px 4px 0 0;min-height:2px;position:relative}
+.bar.alta{background:var(--s550)}
+.hit{position:absolute;inset:-140px -1px 0 -1px}
+.ejes{display:grid;grid-template-columns:repeat(24,1fr);gap:2px;font-size:11px;color:var(--ink-3);text-align:center;margin-top:4px}
+.ref{position:absolute;left:0;right:0;border-top:1px dashed var(--ink-3);font-size:11px;color:var(--ink-3)}
+.ref span{position:absolute;right:0;top:-16px;background:var(--surface);padding:0 4px}
+.heat{display:grid;grid-template-columns:52px repeat(24,1fr);gap:2px;font-size:11px;color:var(--ink-2)}
+.cell{height:18px;border-radius:3px;background:var(--on)}
+.cell.off{background:var(--off)}
+.cell.nd{background:repeating-linear-gradient(135deg,var(--nodata) 0 3px,transparent 3px 6px);border:1px solid var(--nodata)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--ink-2);margin-top:10px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin-right:5px}
+.tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--surface);font-size:12px;padding:6px 8px;border-radius:6px;display:none;z-index:9;white-space:nowrap}
+ul{margin:0;padding-left:18px}
+li{margin:4px 0}
+.metric{font-size:28px;font-weight:700;font-variant-numeric:tabular-nums}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.nota{font-size:12px;color:var(--ink-3);margin-top:10px}
+details summary{cursor:pointer;color:var(--ink-2);font-size:13px;margin-top:10px}
+table{border-collapse:collapse;font-size:12px;margin-top:8px;width:100%}
+td,th{padding:3px 6px;border-bottom:1px solid var(--border);text-align:left}
+@media (max-width:480px){.ejes span:nth-child(odd){visibility:hidden}.heat{grid-template-columns:40px repeat(24,1fr);gap:1px}}
+</style>
+</head>
+<body>
+<main>
+  <h1>Pronóstico de cortes de luz</h1>
+  <div class="sub" id="actualizado">Cargando…</div>
+  <div class="card">
+    <label class="sub" for="sel">Circuito</label><br>
+    <select id="sel"></select>
+    <div class="sub" id="urbs" style="margin-top:6px"></div>
+  </div>
+  <div class="card"><div class="estado" id="estado"></div></div>
+  <div class="card"><h2>Próximas 24 horas: franjas con riesgo alto</h2><div class="franjas" id="franjas"></div></div>
+  <div class="card">
+    <h2>Probabilidad de corte por hora</h2>
+    <div class="chart" id="chart"></div>
+    <details><summary>Ver como tabla</summary><table id="tabla"></table></details>
+  </div>
+  <div class="card">
+    <h2>Lo que pasó estos días</h2>
+    <div class="heat" id="heat"></div>
+    <div class="legend"><span><i style="background:var(--off)"></i>Sin luz</span><span><i style="background:var(--on)"></i>Con luz</span><span><i class="cell nd" style="height:12px"></i>Sin reportes</span></div>
+  </div>
+  <div class="card"><h2>Se apagan junto con tu circuito</h2><div id="comp"></div></div>
+  <div class="card"><h2>¿Qué tan confiable es?</h2><div id="bt"></div></div>
+  <p class="nota">Datos: canal público Monitor Vecinal (reportes de vecinos). Corpoelec no publica un cronograma fijo; esto es un estimado estadístico, no un aviso oficial.</p>
+</main>
+<div class="tip" id="tip"></div>
+<script>
+const $=id=>document.getElementById(id), tip=$('tip');
+const pct=x=>Math.round(x*100)+'%', hh=h=>String(h%24).padStart(2,'0')+':00';
+function showTip(e,txt){tip.textContent=txt;tip.style.display='block';const x=Math.min(e.clientX+12,innerWidth-tip.offsetWidth-8);tip.style.left=x+'px';tip.style.top=(e.clientY-36)+'px'}
+document.addEventListener('pointerdown',e=>{if(!e.target.closest('[data-tip]'))tip.style.display='none'});
+function bindTip(el,txt){el.dataset.tip=1;el.addEventListener('pointermove',e=>showTip(e,txt));el.addEventListener('pointerenter',e=>showTip(e,txt));el.addEventListener('pointerleave',()=>tip.style.display='none')}
+
+let D;
+fetch('data.json?'+Date.now()).then(r=>r.json()).then(d=>{
+  D=d;
+  $('actualizado').textContent='Actualizado: '+d.actualizado.replace(' ',' a las ')+' (hora de Venezuela)';
+  const keys=Object.keys(d.circuitos).sort();
+  const pref=localStorageGet()||d.zona+'/'+d.principal;
+  $('sel').innerHTML=keys.map(k=>`<option value="${k}" ${k===pref?'selected':''}>${k.replace('/',' · ')}</option>`).join('');
+  $('sel').onchange=()=>{localStorageSet($('sel').value);render()};
+  render();
+}).catch(()=>$('actualizado').textContent='No se pudieron cargar los datos.');
+function localStorageGet(){try{return localStorage.getItem('circuito')}catch(e){return null}}
+function localStorageSet(v){try{localStorage.setItem('circuito',v)}catch(e){}}
+
+function render(){
+  const c=D.circuitos[$('sel').value];
+  const now=new Date(D.actualizado.replace(' ','T')), H=now.getHours();
+  $('urbs').textContent=c.urbanizaciones;
+  // estado
+  $('estado').innerHTML=c.en_curso_desde
+    ?`<span class="dot" style="background:var(--critical)"></span><div><b>Sin luz</b><div class="sub">Según el canal, desde las ${c.en_curso_desde.slice(11)} del ${c.en_curso_desde.slice(8,10)}/${c.en_curso_desde.slice(5,7)}</div></div>`
+    :`<span class="dot" style="background:var(--good)"></span><div><b>Con luz</b><div class="sub">No hay corte reportado en el último reporte del canal</div></div>`;
+  // franjas próximas 24h
+  const fr=[];let cur=null;
+  for(let i=1;i<=24;i++){const h=(H+i)%24,p=c.perfil[h],dia=(H+i)>=24?'Mañana':'Hoy';
+    if(p>=0.5){if(cur&&cur.dia===dia&&cur.fin===h){cur.fin=h+1;cur.ps.push(p)}else{cur={dia,ini:h,fin:h+1,ps:[p]};fr.push(cur)}}else cur=null}
+  $('franjas').innerHTML=fr.length?fr.map(f=>`<div class="franja"><span>${f.dia} ${hh(f.ini)} a ${hh(f.fin)}</span><span class="pct">hasta ${pct(Math.max(...f.ps))}</span></div>`).join('')
+    :'<div class="vacio">Ninguna hora pasa del 50% en las próximas 24 horas.</div>';
+  // barras
+  const ch=$('chart');ch.innerHTML='';
+  const bars=document.createElement('div');bars.className='bars';
+  c.perfil.forEach((p,h)=>{const b=document.createElement('div');b.className='bar'+(p>=0.5?' alta':'');b.style.height=Math.max(p*100,1.5)+'%';
+    const hit=document.createElement('div');hit.className='hit';b.appendChild(hit);bindTip(b,`${hh(h)} a ${hh(h+1)}: ${pct(p)} de probabilidad`);bars.appendChild(b)});
+  ch.appendChild(bars);
+  const ref=document.createElement('div');ref.className='ref';ref.style.bottom=(70+18)+'px';ref.innerHTML='<span>50%</span>';ch.appendChild(ref);
+  const ej=document.createElement('div');ej.className='ejes';ej.innerHTML=c.perfil.map((_,h)=>`<span>${h}</span>`).join('');ch.appendChild(ej);
+  $('tabla').innerHTML='<tr><th>Hora</th><th>Probabilidad</th></tr>'+c.perfil.map((p,h)=>`<tr><td>${hh(h)}</td><td>${pct(p)}</td></tr>`).join('');
+  // heatmap
+  let html='<span></span>'+Array.from({length:24},(_,h)=>`<span style="text-align:center">${h%3?'':h}</span>`).join('');
+  c.historial.forEach(r=>{html+=`<span>${r.fecha.slice(8)}/${r.fecha.slice(5,7)}</span>`+r.horas.map(v=>`<div class="cell ${v===1?'off':v===null?'nd':''}"></div>`).join('')});
+  $('heat').innerHTML=html;
+  const cells=$('heat').querySelectorAll('.cell');
+  c.historial.forEach((r,i)=>r.horas.forEach((v,h)=>bindTip(cells[i*24+h],`${r.fecha.slice(8)}/${r.fecha.slice(5,7)} ${hh(h)}: ${v===1?'sin luz':v===0?'con luz':'sin reportes'}`)));
+  // compañeros
+  $('comp').innerHTML=c.companeros.length?'<ul>'+c.companeros.map(x=>`<li><b>${x.circuito}</b>: coinciden en el ${pct(x.coincidencia)} de sus horas sin luz</li>`).join('')+'</ul><div class="nota">Si ves en el canal que a ellos se les fue la luz, es probable que a ti también.</div>'
+    :'<div class="vacio">Todavía no hay suficientes datos.</div>';
+  // backtest
+  const b=c.backtest;
+  $('bt').innerHTML=b.horas?`<div class="metrics">
+    <div><div class="metric">${pct(b.acierto)}</div><div class="sub">de horas acertadas (con luz / sin luz) al predecir cada día con los anteriores</div></div>
+    <div><div class="metric">${pct(b.ingenuo)}</div><div class="sub">habría acertado decir siempre "no se va la luz"</div></div>
+    <div><div class="metric">${b.alta_cumplidas==null?'–':pct(b.alta_cumplidas)}</div><div class="sub">de las horas marcadas como riesgo alto terminaron sin luz</div></div></div>
+    <div class="nota">Basado en ${c.dias_con_datos} días con reportes y ${b.horas} horas verificables. Mientras más días se acumulen, más confiable.</div>`
+    :'<div class="vacio">Faltan días para medirlo.</div>';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+name: Actualizar pronóstico
+
+on:
+  schedule:
+    - cron: "*/20 * * * *"   # cada 20 minutos (GitHub puede retrasarlo unos minutos)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: actualizar
+  cancel-in-progress: false
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - run: python collect.py
+      - run: python forecast.py
+      - run: python alert.py
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      - name: Guardar cambios
+        run: |
+          git config user.name "pronostico-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data docs
+          git diff --cached --quiet || git commit -m "Actualizar datos $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push
