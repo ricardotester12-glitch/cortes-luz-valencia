@@ -2,5 +2,6 @@
   "zona": "ValenciaNorte",
   "circuito": "Cuatricentenario",
   "aviso_previo_min": 30,
-  "umbral_aviso": 0.35
+  "umbral_aviso": 0.35,
+  "enviar": ["aviso", "resumen", "volvió"]
 }

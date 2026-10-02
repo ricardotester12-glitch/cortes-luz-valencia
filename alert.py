@@ -1,6 +1,6 @@
 """Alertas de cortes: registro en docs/alertas.json, Telegram y correo.
 
-- "se fue" / "volvió": solo tu circuito (config.json["circuito"])
+- "se fue": solo se registra (no se envía); "volvió": se envía. Solo tu circuito.
 - "aviso": ~30 min antes de cada bloque de la zona, con la probabilidad para tu circuito
 - "resumen": pronóstico del día a las 6 a. m.
 
@@ -23,6 +23,7 @@ F_ALERTAS = os.path.join(RAIZ, "docs", "alertas.json")
 PAGINA = "https://ricardotester12-glitch.github.io/cortes-luz-valencia/"
 AVISO_MIN = CONFIG.get("aviso_previo_min", 30)
 UMBRAL_AVISO = CONFIG.get("umbral_aviso", 0.35)
+ENVIAR = CONFIG.get("enviar", ["aviso", "resumen", "volvió"])  # "se fue" queda solo en el registro
 ASUNTOS = {"aviso": "⏰ Posible corte en {m} min", "resumen": "Pronóstico de cortes de hoy",
            "se fue": "⚡ Se fue la luz", "volvió": "✅ Volvió la luz"}
 
@@ -102,9 +103,10 @@ def main():
 
     for a in nuevas:
         a["detectada"] = ahora.strftime(FMT)
-        a["enviada"] = telegram(a["texto"])
-        m = round((datetime.strptime(a["hora_evento"], FMT) - ahora).total_seconds() / 60)
-        a["correo"] = correo(ASUNTOS[a["tipo"]].format(m=max(m, 0)) + f" · {propio}", a["texto"])
+        if a["tipo"] in ENVIAR:
+            a["enviada"] = telegram(a["texto"])
+            m = round((datetime.strptime(a["hora_evento"], FMT) - ahora).total_seconds() / 60)
+            a["correo"] = correo(ASUNTOS[a["tipo"]].format(m=max(m, 0)) + f" · {propio}", a["texto"])
         print(a["texto"].replace("\n", " | "), "| Telegram:", a["enviada"], "| Correo:", a.get("correo"))
     if nuevas:
         alertas = (nuevas[::-1] + alertas)[:300]
