@@ -3,5 +3,6 @@
   "circuito": "Cuatricentenario",
   "aviso_previo_min": 30,
   "umbral_aviso": 0.35,
+  "correo": false,
   "enviar": ["aviso", "resumen", "volvió"]
 }

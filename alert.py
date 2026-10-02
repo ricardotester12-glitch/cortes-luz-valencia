@@ -52,6 +52,8 @@ def telegram(texto):
 
 
 def correo(asunto, texto):
+    if not CONFIG.get("correo", True):
+        return False
     user, clave, para = secreto("EMAIL_USER"), secreto("EMAIL_APP_PASSWORD"), secreto("EMAIL_TO")
     if not (user and clave and para):
         faltan = [n for n, v in (("EMAIL_USER", user), ("EMAIL_APP_PASSWORD", clave), ("EMAIL_TO", para)) if not v]
