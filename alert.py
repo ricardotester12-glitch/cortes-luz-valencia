@@ -28,17 +28,34 @@ ASUNTOS = {"aviso": "⏰ Posible corte en {m} min", "resumen": "Pronóstico de c
            "se fue": "⚡ Se fue la luz", "volvió": "✅ Volvió la luz"}
 
 
+DIAG = {}  # último resultado de cada canal, sin datos sensibles (docs/diagnostico.json)
+
+
+def secreto(nombre):
+    """Lee un secreto sin comillas, saltos de línea ni espacios (incluidos los invisibles al copiar)."""
+    v = (os.environ.get(nombre) or "").replace(" ", " ").strip().strip('"').strip("'")
+    return "".join(v.split())
+
+
 def telegram(texto):
-    token, chat = os.environ.get("TELEGRAM_TOKEN"), os.environ.get("TELEGRAM_CHAT_ID")
+    token, chat = secreto("TELEGRAM_TOKEN"), secreto("TELEGRAM_CHAT_ID")
     if not (token and chat):
+        DIAG["telegram"] = "sin configurar: falta " + ("TELEGRAM_TOKEN" if not token else "TELEGRAM_CHAT_ID")
         return False
-    r = requests.post(f"https://api.telegram.org/bot{token}/sendMessage", json={"chat_id": chat, "text": texto}, timeout=20)
-    return r.ok
+    try:
+        r = requests.post(f"https://api.telegram.org/bot{token}/sendMessage", json={"chat_id": chat, "text": texto}, timeout=20)
+        DIAG["telegram"] = "ok" if r.ok else f"Telegram respondió {r.status_code}: {r.json().get('description', '')}"
+        return r.ok
+    except Exception as e:  # un fallo de envío nunca debe tumbar la tarea
+        DIAG["telegram"] = f"error {type(e).__name__}"
+        return False
 
 
 def correo(asunto, texto):
-    user, clave, para = (os.environ.get(k) for k in ("EMAIL_USER", "EMAIL_APP_PASSWORD", "EMAIL_TO"))
+    user, clave, para = secreto("EMAIL_USER"), secreto("EMAIL_APP_PASSWORD"), secreto("EMAIL_TO")
     if not (user and clave and para):
+        faltan = [n for n, v in (("EMAIL_USER", user), ("EMAIL_APP_PASSWORD", clave), ("EMAIL_TO", para)) if not v]
+        DIAG["correo"] = "sin configurar: falta " + ", ".join(faltan)
         return False
     msg = MIMEText(f"{texto}\n\nDashboard: {PAGINA}", "plain", "utf-8")
     msg["Subject"], msg["From"], msg["To"] = asunto, user, para
@@ -46,9 +63,11 @@ def correo(asunto, texto):
         with smtplib.SMTP_SSL("smtp.gmail.com", 465, timeout=30) as s:
             s.login(user, clave)
             s.send_message(msg)
+        DIAG["correo"] = "ok"
         return True
-    except smtplib.SMTPException as e:
-        print("Error de correo:", e)
+    except Exception as e:  # un fallo de envío nunca debe tumbar la tarea
+        detalle = e.smtp_error.decode(errors="ignore")[:160] if hasattr(e, "smtp_error") else ""
+        DIAG["correo"] = f"error {type(e).__name__} {detalle}".strip()
         return False
 
 
@@ -112,6 +131,11 @@ def main():
         alertas = (nuevas[::-1] + alertas)[:300]
     with open(F_ALERTAS, "w", encoding="utf-8") as f:
         json.dump(alertas, f, ensure_ascii=False, indent=0)
+    if DIAG:
+        DIAG["fecha"] = ahora.strftime(FMT)
+        with open(os.path.join(RAIZ, "docs", "diagnostico.json"), "w", encoding="utf-8") as f:
+            json.dump(DIAG, f, ensure_ascii=False, indent=1)
+        print("Diagnóstico:", DIAG)
 
 
 if __name__ == "__main__":
