@@ -90,6 +90,15 @@ def main():
             nuevas.append({"clave": clave, "tipo": tipo, "circuito": circuito, "hora_evento": hora_evento, "texto": texto})
             claves.add(clave)
 
+    # Confirmación única de que Telegram quedó conectado (se reintenta hasta que salga bien)
+    if "conexion|telegram" not in claves and telegram(
+            f"✅ Listo: el bot de cortes de luz quedó conectado.
+Te avisaré ~30 min antes de cada bloque probable en {propio}, "
+            "te mandaré el pronóstico a las 6 a. m. y te diré cuándo vuelve la luz."):
+        claves.add("conexion|telegram")
+        alertas.append({"clave": "conexion|telegram", "tipo": "conexión", "circuito": "", "hora_evento": ahora.strftime(FMT),
+                        "texto": "Telegram conectado", "detectada": ahora.strftime(FMT), "enviada": True})
+
     # Resumen del día (una vez, entre 5:30 y 8:00)
     if mio and bloques and (5, 30) <= (ahora.hour, ahora.minute) < (8, 0):
         lineas = [f"• {b}  {round(prob_bloque(mio['perfil'], b) * 100)}%" for b in bloques]
