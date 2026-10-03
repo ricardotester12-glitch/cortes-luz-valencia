@@ -1,5 +1,15 @@
 [
 {
+"clave": "resumen|2026-10-03",
+"tipo": "resumen",
+"circuito": "Cuatricentenario",
+"hora_evento": "2026-10-03 05:38",
+"texto": "📋 Pronóstico de hoy para Cuatricentenario (Valencia Norte).\nProbabilidad de corte en cada bloque:\n• 00:01  9%\n• 08:30  46%\n• 11:42  70%\n• 14:38  46%\n• 17:50  22%\n• 20:55  46%\n• 22:25  36%",
+"detectada": "2026-10-03 05:38",
+"enviada": true,
+"correo": false
+},
+{
 "clave": "on|Cuatricentenario|2026-10-02 21:01",
 "tipo": "volvió",
 "circuito": "Cuatricentenario",
