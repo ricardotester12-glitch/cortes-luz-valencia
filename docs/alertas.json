@@ -56,5 +56,14 @@
 "detectada": "2026-10-02 05:40",
 "enviada": false,
 "correo": false
+},
+{
+"clave": "conexion|telegram",
+"tipo": "conexión",
+"circuito": "",
+"hora_evento": "2026-10-02 23:20",
+"texto": "Telegram conectado",
+"detectada": "2026-10-02 23:20",
+"enviada": true
 }
 ]
