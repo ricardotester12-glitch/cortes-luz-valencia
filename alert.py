@@ -92,8 +92,7 @@ def main():
 
     # Confirmación única de que Telegram quedó conectado (se reintenta hasta que salga bien)
     if "conexion|telegram" not in claves and telegram(
-            f"✅ Listo: el bot de cortes de luz quedó conectado.
-Te avisaré ~30 min antes de cada bloque probable en {propio}, "
+            f"✅ Listo: el bot de cortes de luz quedó conectado.\nTe avisaré ~30 min antes de cada bloque probable en {propio}, "
             "te mandaré el pronóstico a las 6 a. m. y te diré cuándo vuelve la luz."):
         claves.add("conexion|telegram")
         alertas.append({"clave": "conexion|telegram", "tipo": "conexión", "circuito": "", "hora_evento": ahora.strftime(FMT),
