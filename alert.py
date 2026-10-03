@@ -128,7 +128,7 @@ def main():
             a["enviada"] = telegram(a["texto"])
             m = round((datetime.strptime(a["hora_evento"], FMT) - ahora).total_seconds() / 60)
             a["correo"] = correo(ASUNTOS[a["tipo"]].format(m=max(m, 0)) + f" · {propio}", a["texto"])
-        print(a["texto"].replace("\n", " | "), "| Telegram:", a["enviada"], "| Correo:", a.get("correo"))
+        print(a["texto"].replace("\n", " | "), "| Telegram:", a.get("enviada", "no se envía"), "| Correo:", a.get("correo"))
     if nuevas:
         alertas = (nuevas[::-1] + alertas)[:300]
     with open(F_ALERTAS, "w", encoding="utf-8") as f:
