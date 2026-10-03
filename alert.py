@@ -38,7 +38,7 @@ def secreto(nombre):
 
 
 def telegram(texto):
-    token, chat = secreto("TELEGRAM_TOKEN"), secreto("TELEGRAM_CHAT_ID")
+    token, chat = secreto("TELEGRAM_TOKEN"), secreto("TELEGRAM_CHAT_ID") or str(CONFIG.get("telegram_chat_id", ""))
     if not (token and chat):
         DIAG["telegram"] = "sin configurar: falta " + ("TELEGRAM_TOKEN" if not token else "TELEGRAM_CHAT_ID")
         return False

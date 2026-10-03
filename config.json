@@ -4,5 +4,6 @@
   "aviso_previo_min": 30,
   "umbral_aviso": 0.35,
   "correo": false,
+  "telegram_chat_id": 935029025,
   "enviar": ["aviso", "resumen", "volvió"]
 }
