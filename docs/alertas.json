@@ -1,5 +1,15 @@
 [
 {
+"clave": "aviso|2026-10-08 12:47",
+"tipo": "aviso",
+"circuito": "Cuatricentenario",
+"hora_evento": "2026-10-08 12:47",
+"texto": "⏰ En ~21 min (a las 12:47) empieza un bloque de cortes en Valencia Norte.\nProbabilidad de que le toque a Cuatricentenario: 61%.",
+"detectada": "2026-10-08 12:26",
+"enviada": true,
+"correo": false
+},
+{
 "clave": "on|Cuatricentenario|2026-10-08 08:48",
 "tipo": "volvió",
 "circuito": "Cuatricentenario",
