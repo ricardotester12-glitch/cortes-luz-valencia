@@ -1,5 +1,13 @@
 [
 {
+"clave": "off|Cuatricentenario|2026-10-09 11:02",
+"tipo": "se fue",
+"circuito": "Cuatricentenario",
+"hora_evento": "2026-10-09 11:02",
+"texto": "⚡ Se fue la luz en Cuatricentenario a las 11:02.",
+"detectada": "2026-10-09 11:07"
+},
+{
 "clave": "aviso|2026-10-09 08:33",
 "tipo": "aviso",
 "circuito": "Cuatricentenario",
