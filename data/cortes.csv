@@ -440,10 +440,13 @@ SanDiego,Mantex,2026-10-10 09:15,2026-10-10 15:15,2026-10-10 14:56,"AltosdelPara
 ValenciaNorte,Miranda,2026-10-10 09:23,2026-10-10 11:50,2026-10-10 11:42,"AguaBlanca, CampoAlegre, CentroNorte, Kerdell, LaArboleda, LosSauces, Miranda, SantaCecilia"
 ValenciaNorte,Guaparo1,2026-10-10 11:25,2026-10-10 14:45,2026-10-10 14:14,"Guaparo, LaCeiba, LaViña, Mañonguito, PiedrasPintadas, TrigalNorte"
 ValenciaNorte,Viñedo1,2026-10-10 11:29,2026-10-10 14:36,2026-10-10 14:14,"ElViñedo, LaViña, PadreAlfonso, Prebo1"
-ValenciaNorte,Chimeneas,2026-10-10 11:31,,2026-10-10 18:13,"LaIsabela, LasChimeneas"
-Naguanagua,Manantial,2026-10-10 14:35,,2026-10-10 17:28,"CascoCentral, ElRincón, Guayabal, LaBegoña, LosGuayabitos, Manantial, Tazajal"
+ValenciaNorte,Chimeneas,2026-10-10 11:31,2026-10-10 17:31,2026-10-10 18:13,"LaIsabela, LasChimeneas"
+Naguanagua,Manantial,2026-10-10 14:35,,2026-10-10 18:39,"CascoCentral, ElRincón, Guayabal, LaBegoña, LosGuayabitos, Manantial, Tazajal"
 ValenciaNorte,Viñedo1,2026-10-10 16:13,2026-10-10 16:28,,"ElViñedo, LaViña, PadreAlfonso, Prebo1"
 ValenciaNorte,SabanaLarga,2026-10-10 16:14,2026-10-10 16:28,2026-10-10 16:29,"AguaBlanca, Prebo1, Prebo2, Prebo3, Sabanalarga"
 Naguanagua,Cidra,2026-10-10 17:01,2026-10-10 17:20,2026-10-10 17:05,"Caprenco, LaCidra, Tarapio"
-ValenciaNorte,Viñedo2,2026-10-10 18:07,,2026-10-10 18:13,LaViña
-ValenciaNorte,Viñedo1,2026-10-10 18:12,,2026-10-10 18:13,"ElViñedo, LaViña, PadreAlfonso, Prebo1"
+ValenciaNorte,Viñedo2,2026-10-10 18:07,,2026-10-10 18:38,LaViña
+ValenciaNorte,AvBolivar,2026-10-10 18:12,,2026-10-10 18:38,"Ateneo, Camoruco, Caribbean, CentroNorte, ElViñedo, Flores, Kerdell, LasAcacias, LasChimeneas, LosColorados, LosNaranjos, LosSauces, Miranda, PadreAlfonso, Prebol, San José"
+ValenciaNorte,Viñedo1,2026-10-10 18:12,,2026-10-10 18:38,"ElViñedo, LaViña, PadreAlfonso, Prebo1"
+ValenciaNorte,Norte1,2026-10-10 18:37,,2026-10-10 18:38,"Ateneo, Camoruco, CampoAlegre, Caribbean, Chaguaramal, LosNaranjos, Prebol, SanJosedeTarbes, ValleBlanco"
+Naguanagua,Barbula,2026-10-10 18:39,,2026-10-10 18:39,"CascoCentral, Guayabal, LaCampiña1, LasQuintas2, LosGuayabitos"
