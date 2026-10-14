@@ -564,8 +564,8 @@ ValenciaNorte,TrigalSur,2026-10-14 06:06,,2026-10-14 06:50,LaTrigaleña
 ValenciaNorte,Cuatricentenario,2026-10-14 08:40,2026-10-14 11:49,2026-10-14 11:23,"ElBosque, LosMangos, ParqueMirador, TerrazasdeLosNisperos"
 ValenciaNorte,Viñedo1,2026-10-14 08:41,2026-10-14 11:50,2026-10-14 11:23,"ElViñedo, LaViña, PadreAlfonso, Prebo1"
 ValenciaNorte,Chimeneas,2026-10-14 08:43,2026-10-14 11:50,2026-10-14 11:23,"LaIsabela, LaTrigaleña, LasChimeneas"
-SanDiego,Castillito1,2026-10-14 08:45,,2026-10-14 12:04,"ParqueComercialIndustrialCastillito, ZonaIndustrialSanDiego"
-SanDiego,SanDiego2,2026-10-14 08:45,,2026-10-14 12:04,"CdIndustrialUnion, ParqueComercialIndustrialCastillito"
+SanDiego,Castillito1,2026-10-14 08:45,,2026-10-14 14:19,"ParqueComercialIndustrialCastillito, ZonaIndustrialSanDiego"
+SanDiego,SanDiego2,2026-10-14 08:45,,2026-10-14 14:19,"CdIndustrialUnion, ParqueComercialIndustrialCastillito"
 Naguanagua,Barbula,2026-10-14 08:48,,2026-10-14 12:04,"CascoCentral, Guayabal, LaCampiña1, LasQuintas2, LosGuayabitos"
 Naguanagua,Cafetal,2026-10-14 08:50,2026-10-14 11:55,2026-10-14 10:21,"BarrioUnion, Cafetal, ElPinar, LaBegoña, LaCampiña2, LosCandiles, Naranjal1, Naranjal2, Rotafé, Tarapio"
 ValenciaNorte,Guaparo2,2026-10-14 09:11,2026-10-14 10:29,2026-10-14 09:11,"Carabobo, LaAlegría, LasClavelinas, Majay, Mañonguito, TrigalNorte"
@@ -573,4 +573,5 @@ ValenciaNorte,Prueba,2026-10-14 11:10,2026-10-14 11:22,,Prueba
 Naguanagua,Prueba,2026-10-14 11:11,2026-10-14 12:03,,Prueba
 SanDiego,Prueba,2026-10-14 11:11,2026-10-14 12:03,,Prueba
 ValenciaNorte,Norte1,2026-10-14 11:45,2026-10-14 12:15,2026-10-14 11:59,"Ateneo, Camoruco, CampoAlegre, Caribbean, Chaguaramal, LosNaranjos, Prebol, SanJosedeTarbes, ValleBlanco"
-ValenciaNorte,Prebo,2026-10-14 12:20,,2026-10-14 12:24,"AguaBlanca, Camoruco, CampoAlegre, Prebo1"
+SanDiego,Petrocasa/Cumaca,2026-10-14 11:50,,2026-10-14 14:19,"CasaVerde, CentroSan Diego, Colonial, Josefinas1, Josefinas2, LasTrinitarias, ManantialDorado, ParqueCampestreLaCumaca, PaulaBerbecia, PiedeMonteChalet, PuebloLaCumaca, SabanadelMedio, TerrazasdeSanDiegoCountry, TizianaVilla, UAM, VillasLaPonderosa, VillasManantialCountry, VillasSanDiegoCountryClub, VillasSanRafael, VillasdeAlcalá, VillasdelCampo, ZPI12"
+ValenciaNorte,Prebo,2026-10-14 12:20,,2026-10-14 13:54,"AguaBlanca, Camoruco, CampoAlegre, Prebo1"
