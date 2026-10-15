@@ -585,7 +585,7 @@ SanDiego,Mantex,2026-10-14 14:58,2026-10-14 20:58,2026-10-14 21:33,"AltosdelPara
 SanDiego,Castillito2,2026-10-14 15:00,2026-10-14 21:13,2026-10-14 21:13,"CdIndustrialUnion, ParqueComercialIndustrialCastillito"
 ValenciaNorte,Valencia1,2026-10-14 15:00,2026-10-14 17:57,2026-10-14 18:00,"Flores, LaRosarito, LomasdelEste"
 ValenciaNorte,AvBolivar,2026-10-14 15:45,2026-10-14 21:14,2026-10-14 18:49,"Ateneo, Camoruco, Caribbean, CentroNorte, ElViñedo, Flores, Kerdell, LasAcacias, LasChimeneas, LosColorados, LosNaranjos, LosSauces, Miranda, PadreAlfonso, Prebol, San José"
-ValenciaNorte,Prueba,2026-10-14 17:28,,2026-10-14 23:23,Prueba
+ValenciaNorte,Prueba,2026-10-14 17:28,,2026-10-15 00:11,Prueba
 Naguanagua,Manantial,2026-10-14 17:45,2026-10-14 21:14,2026-10-14 19:12,"CascoCentral, ElRincón, Guayabal, LaBegoña, LosGuayabitos, Manantial, Tazajal"
 ValenciaNorte,Viñedo2,2026-10-14 17:45,2026-10-14 21:13,2026-10-14 18:49,LaViña
 ValenciaNorte,Ceiba,2026-10-14 17:46,2026-10-14 21:14,2026-10-14 18:49,"Camoruco, LasAcacias, LosSauces, Miranda"
@@ -596,9 +596,9 @@ ValenciaNorte,Carabobo,2026-10-14 17:48,2026-10-14 21:12,2026-10-14 21:17,"Carab
 ValenciaNorte,Casupo,2026-10-14 17:48,2026-10-14 21:15,2026-10-14 21:17,"ElBosque, ElParral, GranjaLasPalmas, LaManguita, LosNisperos, TerrazasdeLosNisperos"
 ValenciaNorte,Guaparo2,2026-10-14 17:48,2026-10-14 21:09,2026-10-14 18:49,"Carabobo, LaAlegría, LasClavelinas, Majay, Mañonguito, TrigalNorte"
 Naguanagua,Granja,2026-10-14 17:50,2026-10-14 21:15,2026-10-14 19:12,"LasQuintas1, LasQuintas2, LasQuintas3"
-ValenciaNorte,Guaparo1,2026-10-14 20:58,,2026-10-14 23:23,"Guaparo, LaCeiba, LaViña, Mañonguito, PiedrasPintadas, TrigalNorte"
-ValenciaNorte,Trigal,2026-10-14 21:03,,2026-10-14 23:23,"TrigalCentro, TrigalSur"
-ValenciaNorte,Norte2,2026-10-14 21:05,,2026-10-14 23:23,"ElRecreo, LaAlegría, LaViña"
+ValenciaNorte,Guaparo1,2026-10-14 20:58,,2026-10-15 00:11,"Guaparo, LaCeiba, LaViña, Mañonguito, PiedrasPintadas, TrigalNorte"
+ValenciaNorte,Trigal,2026-10-14 21:03,2026-10-15 00:08,2026-10-14 23:23,"TrigalCentro, TrigalSur"
+ValenciaNorte,Norte2,2026-10-14 21:05,,2026-10-15 00:11,"ElRecreo, LaAlegría, LaViña"
 ValenciaNorte,Soublette2,2026-10-14 21:07,2026-10-14 23:23,,"LosNisperos, Oviedo, PadreAlfonso"
 SanDiego,Esmeralda,2026-10-14 21:08,,2026-10-14 22:11,"LaEsmeralda, LasGaviotas, LomasdeLaEsmeralda, ValleVerde"
 SanDiego,Morro2,2026-10-14 21:10,,2026-10-14 22:11,"LaEsmeralda, Morro2, TerrazasdeSanDiego"
