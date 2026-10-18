@@ -739,15 +739,22 @@ ValenciaNorte,Guaparo2,2026-10-17 17:16,2026-10-17 20:36,2026-10-17 20:25,"Carab
 Naguanagua,Carabobo,2026-10-17 17:18,2026-10-17 20:31,2026-10-17 20:27,"Granja1, Granja2"
 ValenciaNorte,Carabobo,2026-10-17 17:18,2026-10-17 20:30,2026-10-17 20:25,"Carabobo, ElRecreo, Guaparo, LaCeiba, Majay"
 ValenciaNorte,SabanaLarga,2026-10-17 17:58,2026-10-17 19:11,2026-10-17 18:33,"AguaBlanca, Prebo1, Prebo2, Prebo3, Sabanalarga, VallesdeCamoruco"
-ValenciaNorte,LaManguita,2026-10-17 20:20,,2026-10-17 23:28,LaManguita
-ValenciaNorte,Chimeneas,2026-10-17 20:22,,2026-10-17 23:28,"LaIsabela, LaTrigaleña, LasChimeneas"
-ValenciaNorte,Yuma,2026-10-17 20:22,,2026-10-17 23:28,TrigalSur
+ValenciaNorte,LaManguita,2026-10-17 20:20,,2026-10-17 23:58,LaManguita
+ValenciaNorte,Chimeneas,2026-10-17 20:22,2026-10-17 23:39,2026-10-17 23:28,"LaIsabela, LaTrigaleña, LasChimeneas"
+ValenciaNorte,Yuma,2026-10-17 20:22,,2026-10-17 23:58,TrigalSur
 ValenciaNorte,Norte2,2026-10-17 20:24,2026-10-17 20:46,2026-10-17 20:25,"ElRecreo, LaAlegría, LaViña"
-ValenciaNorte,Soublette2,2026-10-17 20:24,,2026-10-17 23:28,"LosNisperos, Oviedo, PadreAlfonso"
+ValenciaNorte,Soublette2,2026-10-17 20:24,,2026-10-17 23:58,"LosNisperos, Oviedo, PadreAlfonso"
 Naguanagua,Barbula,2026-10-17 20:25,,2026-10-17 20:34,"CascoCentral, Guayabal, LaCampiña1, LasQuintas2, LosGuayabitos"
 Naguanagua,Hospital,2026-10-17 20:25,,2026-10-17 20:34,"CDJardínMañongo, Mañongo, PalmaReal"
 SanDiego,Morro1,2026-10-17 20:25,2026-10-17 20:31,2026-10-17 20:29,"ElPoblado, LagunaClub, LosAndes1y2, Morro1, ResidenciasMontemayor, Sansur, ValledeOro, Yuma1, Yuma2, Yuma26"
 Naguanagua,Trincheras,2026-10-17 20:26,,2026-10-17 20:34,"Carialinda, LaEntrada"
 Naguanagua,Granja,2026-10-17 20:27,,2026-10-17 20:34,"LasQuintas1, LasQuintas2, LasQuintas3"
 SanDiego,Morro2,2026-10-17 20:28,,2026-10-17 20:31,"LaEsmeralda, Morro2, TerrazasdeSanDiego"
-ValenciaNorte,Trigal,2026-10-17 23:27,,2026-10-17 23:28,"TrigalCentro, TrigalSur"
+ValenciaNorte,Trigal,2026-10-17 23:27,,2026-10-17 23:58,"TrigalCentro, TrigalSur"
+ValenciaNorte,Cuatricentenario,2026-10-17 23:33,,2026-10-17 23:58,"ElBosque, LosMangos, ParqueMirador, TerrazasdeLosNisperos"
+ValenciaNorte,Guaparo1,2026-10-17 23:33,,2026-10-17 23:58,"Guaparo, LaCeiba, LaViña, Mañonguito, PiedrasPintadas, TrigalNorte"
+ValenciaNorte,Solar,2026-10-17 23:33,,2026-10-17 23:58,"ColinasdeGuataparo, ElParral, HatoRoyal, Prebo3, Solar, Sta.MariadelCampo, VillaLagunaClub, VillaLagunaNorte"
+ValenciaNorte,Ceiba,2026-10-17 23:34,,2026-10-17 23:58,"Camoruco, LasAcacias, LosSauces, Miranda"
+ValenciaNorte,Viñedo2,2026-10-17 23:37,,2026-10-17 23:58,LaViña
+ValenciaNorte,TrigalSur,2026-10-17 23:38,,2026-10-17 23:58,LaTrigaleña
+ValenciaNorte,Miranda,2026-10-17 23:43,,2026-10-17 23:58,"AguaBlanca, CampoAlegre, CentroNorte, Kerdell, LaArboleda, LosSauces, Miranda, SantaCecilia"
