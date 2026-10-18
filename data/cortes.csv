@@ -761,16 +761,16 @@ ValenciaNorte,Miranda,2026-10-17 23:43,2026-10-18 05:43,2026-10-18 03:31,"AguaBl
 ValenciaNorte,Norte2,2026-10-18 06:35,2026-10-18 10:14,2026-10-18 10:55,"ElRecreo, LaAlegría, LaViña"
 ValenciaNorte,SabanaLarga,2026-10-18 08:42,2026-10-18 12:35,2026-10-18 11:12,"AguaBlanca, Prebo1, Prebo2, Prebo3, Sabanalarga, VallesdeCamoruco"
 ValenciaNorte,Prebo,2026-10-18 09:45,2026-10-18 13:00,2026-10-18 12:43,"AguaBlanca, Camoruco, CampoAlegre, Prebo1"
-ValenciaNorte,Chimeneas,2026-10-18 09:46,,2026-10-18 16:25,"LaIsabela, LaTrigaleña, LasChimeneas"
+ValenciaNorte,Chimeneas,2026-10-18 09:46,2026-10-18 15:46,2026-10-18 16:25,"LaIsabela, LaTrigaleña, LasChimeneas"
 ValenciaNorte,Viñedo1,2026-10-18 09:48,2026-10-18 12:59,2026-10-18 12:43,"ElViñedo, LaViña, PadreAlfonso, Prebo1"
 ValenciaNorte,Guaparo2,2026-10-18 09:55,2026-10-18 12:58,2026-10-18 12:43,"Carabobo, LaAlegría, LasClavelinas, Majay, Mañonguito, TrigalNorte"
 ValenciaNorte,Cuatricentenario,2026-10-18 10:32,2026-10-18 10:53,2026-10-18 10:35,"ElBosque, LosMangos, ParqueMirador, TerrazasdeLosNisperos"
-ValenciaNorte,TrigalSur,2026-10-18 12:38,,2026-10-18 16:25,LaTrigaleña
-ValenciaNorte,Yuma,2026-10-18 12:43,,2026-10-18 16:25,TrigalSur
-Naguanagua,Barbula,2026-10-18 12:54,,2026-10-18 16:11,"CascoCentral, Guayabal, LaCampiña1, LasQuintas2, LosGuayabitos"
+ValenciaNorte,TrigalSur,2026-10-18 12:38,,2026-10-18 16:47,LaTrigaleña
+ValenciaNorte,Yuma,2026-10-18 12:43,,2026-10-18 16:47,TrigalSur
+Naguanagua,Barbula,2026-10-18 12:54,2026-10-18 16:30,2026-10-18 16:11,"CascoCentral, Guayabal, LaCampiña1, LasQuintas2, LosGuayabitos"
 ValenciaNorte,Guataparo,2026-10-18 13:01,2026-10-18 13:07,2026-10-18 13:06,"CampoAlegre, LosColorados, ValleBlanco, VallesdeCamoruco"
-ValenciaNorte,Guaparo1,2026-10-18 16:05,,2026-10-18 16:25,"Guaparo, LaCeiba, LaViña, Mañonguito, PiedrasPintadas, TrigalNorte"
-Naguanagua,Manantial,2026-10-18 16:07,,2026-10-18 16:11,"CascoCentral, ElRincón, Guayabal, LaBegoña, LosGuayabitos, Manantial, Tazajal"
-ValenciaNorte,Ceiba,2026-10-18 16:07,,2026-10-18 16:25,"Camoruco, LasAcacias, LosSauces, Miranda"
-ValenciaNorte,Cuatricentenario,2026-10-18 16:10,,2026-10-18 16:25,"ElBosque, LosMangos, ParqueMirador, TerrazasdeLosNisperos"
-ValenciaNorte,Miranda,2026-10-18 16:24,,2026-10-18 16:25,"AguaBlanca, CampoAlegre, CentroNorte, Kerdell, LaArboleda, LosSauces, Miranda, SantaCecilia"
+ValenciaNorte,Guaparo1,2026-10-18 16:05,,2026-10-18 16:47,"Guaparo, LaCeiba, LaViña, Mañonguito, PiedrasPintadas, TrigalNorte"
+Naguanagua,Manantial,2026-10-18 16:07,,2026-10-18 16:44,"CascoCentral, ElRincón, Guayabal, LaBegoña, LosGuayabitos, Manantial, Tazajal"
+ValenciaNorte,Ceiba,2026-10-18 16:07,,2026-10-18 16:47,"Camoruco, LasAcacias, LosSauces, Miranda"
+ValenciaNorte,Cuatricentenario,2026-10-18 16:10,,2026-10-18 16:47,"ElBosque, LosMangos, ParqueMirador, TerrazasdeLosNisperos"
+ValenciaNorte,Miranda,2026-10-18 16:24,,2026-10-18 16:47,"AguaBlanca, CampoAlegre, CentroNorte, Kerdell, LaArboleda, LosSauces, Miranda, SantaCecilia"
