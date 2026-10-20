@@ -1,5 +1,15 @@
 [
 {
+"clave": "on|Cuatricentenario|2026-10-20 08:18",
+"tipo": "volvió",
+"circuito": "Cuatricentenario",
+"hora_evento": "2026-10-20 11:13",
+"texto": "✅ Volvió la luz en Cuatricentenario a las 11:13 (duró 2h 55m).",
+"detectada": "2026-10-20 11:35",
+"enviada": true,
+"correo": false
+},
+{
 "clave": "off|Cuatricentenario|2026-10-20 08:18",
 "tipo": "se fue",
 "circuito": "Cuatricentenario",
