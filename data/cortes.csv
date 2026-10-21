@@ -864,14 +864,14 @@ ValenciaNorte,Guaparo2,2026-10-20 23:12,2026-10-21 02:05,2026-10-21 01:14,"Carab
 ValenciaNorte,AvBolivar,2026-10-20 23:13,2026-10-21 02:09,2026-10-21 01:14,"Ateneo, Camoruco, Caribbean, CentroNorte, ElViñedo, Flores, Kerdell, LasAcacias, LasChimeneas, LosColorados, LosNaranjos, LosSauces, Miranda, PadreAlfonso, Prebol, San José"
 SanDiego,Tulipan,2026-10-21 05:25,2026-10-21 11:25,2026-10-21 05:48,"CountryParkVillaserino, ElRemanso, ElTulipan, MonteCarmelo, MonteSinai, TrigaldeSanDiego, VallesdelNogal, VillaJardin"
 ValenciaNorte,Norte1,2026-10-21 07:28,2026-10-21 07:35,,"Ateneo, Camoruco, CampoAlegre, Caribbean, Chaguaramal, LosNaranjos, Prebol, SanJosedeTarbes, ValleBlanco"
-ValenciaNorte,Norte1,2026-10-21 08:58,,2026-10-21 15:38,"Ateneo, Camoruco, CampoAlegre, Caribbean, Chaguaramal, LosNaranjos, Prebol, SanJosedeTarbes, ValleBlanco"
+ValenciaNorte,Norte1,2026-10-21 08:58,2026-10-21 14:58,2026-10-21 15:38,"Ateneo, Camoruco, CampoAlegre, Caribbean, Chaguaramal, LosNaranjos, Prebol, SanJosedeTarbes, ValleBlanco"
 ValenciaNorte,Prebo,2026-10-21 12:15,2026-10-21 15:30,2026-10-21 15:06,"AguaBlanca, Camoruco, CampoAlegre, Prebo1"
 ValenciaNorte,Trigal,2026-10-21 12:20,2026-10-21 14:59,2026-10-21 12:37,"TrigalCentro, TrigalSur"
-ValenciaNorte,TrigalSur,2026-10-21 12:22,,2026-10-21 15:38,LaTrigaleña
-ValenciaNorte,Cuatricentenario,2026-10-21 14:53,,2026-10-21 15:38,"ElBosque, LosMangos, ParqueMirador, TerrazasdeLosNisperos"
-ValenciaNorte,SabanaLarga,2026-10-21 14:53,,2026-10-21 15:38,"AguaBlanca, Prebo1, Prebo2, Prebo3, Sabanalarga, VallesdeCamoruco"
-ValenciaNorte,Viñedo1,2026-10-21 14:53,,2026-10-21 15:38,"ElViñedo, LaViña, PadreAlfonso, Prebo1"
-ValenciaNorte,Viñedo2,2026-10-21 14:58,,2026-10-21 15:38,LaViña
+ValenciaNorte,TrigalSur,2026-10-21 12:22,,2026-10-21 16:01,LaTrigaleña
+ValenciaNorte,Cuatricentenario,2026-10-21 14:53,,2026-10-21 16:01,"ElBosque, LosMangos, ParqueMirador, TerrazasdeLosNisperos"
+ValenciaNorte,SabanaLarga,2026-10-21 14:53,,2026-10-21 16:01,"AguaBlanca, Prebo1, Prebo2, Prebo3, Sabanalarga, VallesdeCamoruco"
+ValenciaNorte,Viñedo1,2026-10-21 14:53,,2026-10-21 16:01,"ElViñedo, LaViña, PadreAlfonso, Prebo1"
+ValenciaNorte,Viñedo2,2026-10-21 14:58,,2026-10-21 16:01,LaViña
 ValenciaNorte,Trigal,2026-10-21 15:00,2026-10-21 15:25,2026-10-21 15:06,"TrigalCentro, TrigalSur"
 SanDiego,Esmeralda,2026-10-21 15:05,,2026-10-21 15:12,"LaEsmeralda, LasGaviotas, LomasdeLaEsmeralda, ValleVerde"
 SanDiego,ValleVerde,2026-10-21 15:08,,2026-10-21 15:12,"Aseprovica, BrisasdelValle, CCFindeSiglo, CentroSan Diego, ChaletsCountry, ElParque, ElPolvero, LaMorochaIV, LasMorochas, Macomaco, ResidenciasOrion, Terranostra, UJAP, ValleFrescoNorte, VillasLasCaracaras"
