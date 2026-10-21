@@ -867,11 +867,12 @@ ValenciaNorte,Norte1,2026-10-21 07:28,2026-10-21 07:35,,"Ateneo, Camoruco, Campo
 ValenciaNorte,Norte1,2026-10-21 08:58,2026-10-21 14:58,2026-10-21 15:38,"Ateneo, Camoruco, CampoAlegre, Caribbean, Chaguaramal, LosNaranjos, Prebol, SanJosedeTarbes, ValleBlanco"
 ValenciaNorte,Prebo,2026-10-21 12:15,2026-10-21 15:30,2026-10-21 15:06,"AguaBlanca, Camoruco, CampoAlegre, Prebo1"
 ValenciaNorte,Trigal,2026-10-21 12:20,2026-10-21 14:59,2026-10-21 12:37,"TrigalCentro, TrigalSur"
-ValenciaNorte,TrigalSur,2026-10-21 12:22,,2026-10-21 16:01,LaTrigaleña
-ValenciaNorte,Cuatricentenario,2026-10-21 14:53,,2026-10-21 16:01,"ElBosque, LosMangos, ParqueMirador, TerrazasdeLosNisperos"
-ValenciaNorte,SabanaLarga,2026-10-21 14:53,,2026-10-21 16:01,"AguaBlanca, Prebo1, Prebo2, Prebo3, Sabanalarga, VallesdeCamoruco"
-ValenciaNorte,Viñedo1,2026-10-21 14:53,,2026-10-21 16:01,"ElViñedo, LaViña, PadreAlfonso, Prebo1"
-ValenciaNorte,Viñedo2,2026-10-21 14:58,,2026-10-21 16:01,LaViña
+ValenciaNorte,TrigalSur,2026-10-21 12:22,,2026-10-21 17:45,LaTrigaleña
+ValenciaNorte,Cuatricentenario,2026-10-21 14:53,,2026-10-21 17:45,"ElBosque, LosMangos, ParqueMirador, TerrazasdeLosNisperos"
+ValenciaNorte,SabanaLarga,2026-10-21 14:53,,2026-10-21 17:45,"AguaBlanca, Prebo1, Prebo2, Prebo3, Sabanalarga, VallesdeCamoruco"
+ValenciaNorte,Viñedo1,2026-10-21 14:53,,2026-10-21 17:45,"ElViñedo, LaViña, PadreAlfonso, Prebo1"
+ValenciaNorte,Viñedo2,2026-10-21 14:58,,2026-10-21 17:45,LaViña
 ValenciaNorte,Trigal,2026-10-21 15:00,2026-10-21 15:25,2026-10-21 15:06,"TrigalCentro, TrigalSur"
 SanDiego,Esmeralda,2026-10-21 15:05,,2026-10-21 15:12,"LaEsmeralda, LasGaviotas, LomasdeLaEsmeralda, ValleVerde"
 SanDiego,ValleVerde,2026-10-21 15:08,,2026-10-21 15:12,"Aseprovica, BrisasdelValle, CCFindeSiglo, CentroSan Diego, ChaletsCountry, ElParque, ElPolvero, LaMorochaIV, LasMorochas, Macomaco, ResidenciasOrion, Terranostra, UJAP, ValleFrescoNorte, VillasLasCaracaras"
+ValenciaNorte,Guaparo2,2026-10-21 17:45,,2026-10-21 17:45,"Carabobo, LaAlegría, LasClavelinas, Majay, Mañonguito, TrigalNorte"
