@@ -879,10 +879,12 @@ ValenciaNorte,Guaparo2,2026-10-21 17:45,2026-10-21 20:58,2026-10-21 19:31,"Carab
 ValenciaNorte,Ceiba,2026-10-21 17:51,2026-10-21 21:02,2026-10-21 19:31,"Camoruco, LasAcacias, LosSauces, Miranda"
 ValenciaNorte,AvBolivar,2026-10-21 17:52,2026-10-21 21:05,2026-10-21 19:31,"Ateneo, Camoruco, Caribbean, CentroNorte, ElViñedo, Flores, Kerdell, LasAcacias, LasChimeneas, LosColorados, LosNaranjos, LosSauces, Miranda, PadreAlfonso, Prebol, San José"
 Naguanagua,Manantial,2026-10-21 18:16,,2026-10-21 21:01,"CascoCentral, ElRincón, Guayabal, LaBegoña, LosGuayabitos, Manantial, Tazajal"
-ValenciaNorte,Valencia1,2026-10-21 20:51,,2026-10-21 23:12,"Flores, LaRosarito, LomasdelEste"
-ValenciaNorte,Guaparo1,2026-10-21 20:52,,2026-10-21 23:12,"Guaparo, LaCeiba, LaViña, Mañonguito, PiedrasPintadas, TrigalNorte"
-ValenciaNorte,Chimeneas,2026-10-21 20:53,,2026-10-21 23:12,"LaIsabela, LaTrigaleña, LasChimeneas"
+ValenciaNorte,Valencia1,2026-10-21 20:51,,2026-10-22 00:15,"Flores, LaRosarito, LomasdelEste"
+ValenciaNorte,Guaparo1,2026-10-21 20:52,2026-10-22 00:12,2026-10-21 23:12,"Guaparo, LaCeiba, LaViña, Mañonguito, PiedrasPintadas, TrigalNorte"
+ValenciaNorte,Chimeneas,2026-10-21 20:53,,2026-10-22 00:15,"LaIsabela, LaTrigaleña, LasChimeneas"
 Naguanagua,Barbula,2026-10-21 20:55,,2026-10-21 21:01,"CascoCentral, Guayabal, LaCampiña1, LasQuintas2, LosGuayabitos"
 SanDiego,Morro1,2026-10-21 20:59,,2026-10-21 22:11,"ElPoblado, LagunaClub, LosAndes1y2, Morro1, ResidenciasMontemayor, Sansur, ValledeOro, Yuma1, Yuma2, Yuma26"
-ValenciaNorte,Norte1,2026-10-21 21:00,,2026-10-21 23:12,"Ateneo, Camoruco, CampoAlegre, Caribbean, Chaguaramal, LosNaranjos, Prebol, SanJosedeTarbes, ValleBlanco"
-ValenciaNorte,TrigalSur,2026-10-21 22:57,,2026-10-21 23:12,LaTrigaleña
+ValenciaNorte,Norte1,2026-10-21 21:00,,2026-10-22 00:15,"Ateneo, Camoruco, CampoAlegre, Caribbean, Chaguaramal, LosNaranjos, Prebol, SanJosedeTarbes, ValleBlanco"
+ValenciaNorte,TrigalSur,2026-10-21 22:57,,2026-10-22 00:15,LaTrigaleña
+ValenciaNorte,Prebo,2026-10-22 00:03,,2026-10-22 00:15,"AguaBlanca, Camoruco, CampoAlegre, Prebo1"
+ValenciaNorte,Viñedo2,2026-10-22 00:15,,2026-10-22 00:15,LaViña
