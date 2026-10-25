@@ -144,6 +144,35 @@ td.e{font-size:11px;color:var(--ink-3)}
 .cal .tr{position:relative;height:12px;background:var(--s0);border-radius:3px}
 .cal .tr i{position:absolute;top:0;bottom:0;left:0;background:var(--s5);border-radius:3px}
 .cal .tr u{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--crit)}
+/* vista simple */
+.simple{display:grid;gap:12px;max-width:680px;width:100%}
+.sc{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.st{font-size:13px;font-weight:600;color:var(--ink-2);margin-bottom:10px}
+.estado{display:flex;gap:14px;align-items:center}
+.estado .ico{font-size:40px;line-height:1}
+.estado .t1{font-size:24px;font-weight:700;line-height:1.2}
+.estado .t2{font-size:15px;color:var(--ink-2);margin-top:4px}
+.estado.on{border-color:color-mix(in srgb,var(--good) 45%,var(--line))}
+.estado.off{border-color:color-mix(in srgb,var(--crit) 45%,var(--line))}
+.vienen{display:grid;gap:10px}
+.fr{display:flex;gap:12px;align-items:center;font-size:16px}
+.fr b{font-weight:700}
+.dot{width:14px;height:14px;border-radius:50%;display:inline-block;flex:none}
+.dot.b{background:var(--good)}.dot.m{background:var(--warn)}.dot.a{background:var(--crit)}
+.lista{display:grid}
+.fila{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:15px}
+.fila:last-child{border-bottom:0}
+.fila .h{font-variant-numeric:tabular-nums;font-weight:600}
+.fila .h small{font-weight:400;color:var(--ink-3)}
+.fila .q{display:flex;gap:8px;align-items:center;color:var(--ink-2);white-space:nowrap}
+.fila.pasado{opacity:.45}
+.ley{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--ink-3);margin-top:10px}
+.ley span{display:flex;gap:6px;align-items:center}.ley .dot{width:10px;height:10px}
+.alerta-s{border-color:color-mix(in srgb,var(--crit) 45%,var(--line));background:color-mix(in srgb,var(--crit) 6%,var(--panel))}
+.fino{font-size:13px;color:var(--ink-2)}
+.mas{border-top:1px solid var(--line);padding-top:6px}
+.mas summary{cursor:pointer;font-weight:600;color:var(--ink-2);padding:10px 0;font-size:14px}
+.mas-in{display:grid;gap:14px;margin-top:8px}
 .tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--panel);font-size:12px;padding:6px 9px;border-radius:6px;display:none;z-index:9;max-width:260px;line-height:1.35}
 @media (prefers-reduced-motion:no-preference){.gb.curso{animation:pulso 2s ease-in-out infinite}@keyframes pulso{50%{opacity:.7}}}
 </style>
@@ -152,11 +181,34 @@ td.e{font-size:11px;color:var(--ink-3)}
 <div class="wrap">
   <header class="top">
     <div>
-      <h1>Pronóstico de cortes de luz</h1>
+      <h1>¿Se va la luz? <span id="s-circ" style="color:var(--ink-2);font-weight:500"></span></h1>
       <div class="meta" id="act">Cargando datos…</div>
     </div>
-    <div><label class="sub" for="sel">Circuito</label><br><select id="sel"></select></div>
   </header>
+
+  <section class="simple" id="simple">
+    <div class="sc estado" id="s-estado"></div>
+    <div class="sc">
+      <div class="st">Lo que viene</div>
+      <div class="vienen" id="s-viene"></div>
+    </div>
+    <div class="sc">
+      <div class="st">Horarios en que suelen cortar</div>
+      <div class="lista" id="s-horarios"></div>
+      <div class="ley"><span><i class="dot b"></i>Poco probable</span><span><i class="dot m"></i>Puede pasar</span><span><i class="dot a"></i>Probable</span></div>
+    </div>
+    <div class="sc" id="s-senal"></div>
+    <div class="sc">
+      <div class="st">Últimos cortes</div>
+      <div class="lista" id="s-ultimos"></div>
+    </div>
+    <div class="sc fino" id="s-confianza"></div>
+  </section>
+
+  <details class="mas" id="mas">
+  <summary>Ver gráficos, otros circuitos y detalles</summary>
+  <div class="mas-in">
+  <div><label class="sub" for="sel">Circuito</label><br><select id="sel"></select></div>
 
   <section class="panel" id="riesgo" hidden>
     <h2>Próximas horas en <span id="r-circ"></span> <small id="r-desde"></small></h2>
@@ -250,6 +302,9 @@ td.e{font-size:11px;color:var(--ink-3)}
     </div>
   </section>
 
+  </div>
+  </details>
+
   <p class="nota">Datos del canal público Monitor Vecinal (reportes de vecinos), actualizados cada 20 minutos. Corpoelec no publica un cronograma fijo: esto es un estimado estadístico, no un aviso oficial.</p>
 </div>
 <div class="tip" id="tip"></div>
@@ -276,6 +331,7 @@ Promise.all([fetch('data.json?'+Date.now()).then(r=>r.json()),fetch('alertas.jso
   $('sel').value=KEY;
   $('sel').onchange=()=>pick($('sel').value);
   render();
+  renderSimple();
 }).catch(()=>{$('act').textContent='No se pudieron cargar los datos. Vuelve a intentar en unos minutos.'});
 
 function pick(k){KEY=k;store.set('circuito',k);$('sel').value=k;render()}
@@ -374,6 +430,54 @@ function render(){
   $('comp').querySelectorAll('[data-k]').forEach(el=>el.onclick=()=>pick(el.dataset.k));
   $('bt-nota').textContent=c.companeros.length?'Porcentaje de horas sin luz que comparten con este circuito. Si a ellos se les va la luz, prepárate.':'';
   renderRiesgo(c,now);
+}
+
+// ---- vista simple: solo el circuito propio, en frases y semáforo
+const h12=s=>{const [h,m]=s.slice(11,16).split(':').map(Number);return `${h%12||12}:${String(m).padStart(2,'0')} ${h<12?'a. m.':'p. m.'}`};
+const nombre=s=>s.replace(/([a-zñ])([A-Z0-9])/g,'$1 $2');
+function cuandoDia(s){
+  const d=Math.round((P(s.slice(0,10)+' 00:00')-P(D.actualizado.slice(0,10)+' 00:00'))/DIA);
+  return d===0?'hoy':d===1?'mañana':d===-1?'ayer':['domingo','lunes','martes','miércoles','jueves','viernes','sábado'][P(s).getDay()]+' '+s.slice(8,10)+'/'+s.slice(5,7);
+}
+function renderSimple(){
+  const R=D.riesgo, c=D.circuitos[D.zona+'/'+D.principal];
+  $('s-circ').textContent='en '+D.principal;
+  if(!R||!c){$('simple').hidden=true;$('mas').open=true;return}
+  const sem=(p,a,b)=>p<a?['b','poco probable']:p<b?['m','puede pasar']:['a','probable'];
+  // estado
+  const e=$('s-estado');
+  if(c.en_curso_desde){
+    e.className='sc estado off';
+    e.innerHTML=`<div class="ico">🕯️</div><div><div class="t1">Sin luz desde las ${h12(c.en_curso_desde)}</div><div class="t2">Debería volver cerca de las ${h12(R.desde)}</div></div>`;
+  }else{
+    e.className='sc estado on';
+    const seg=R.segura_hasta&&P(R.segura_hasta)>P(D.actualizado);
+    e.innerHTML=`<div class="ico">💡</div><div><div class="t1">Tienes luz</div><div class="t2">${seg?`Lo normal es que siga hasta por lo menos las ${h12(R.segura_hasta)} ${cuandoDia(R.segura_hasta)==='hoy'?'':cuandoDia(R.segura_hasta)}`:'Atento: ya estamos en horario de riesgo'}</div></div>`;
+  }
+  // próximas horas
+  const tras=R.sin_luz?'Cuando vuelva, en las siguientes':'En las próximas';
+  const [c3,t3]=sem(R.p3,.15,.35),[c6,t6]=sem(R.p6,.25,.5);
+  $('s-viene').innerHTML=`<div class="fr"><i class="dot ${c3}"></i><span>${tras} <b>3 horas</b>: <b>${t3}</b> que se vaya</span></div>`+
+    `<div class="fr"><i class="dot ${c6}"></i><span>${tras} <b>6 horas</b>: <b>${t6}</b> que se vaya</span></div>`;
+  // horarios
+  $('s-horarios').innerHTML=R.bloques.map(b=>{const [cl,tx]=sem(b.prob,.15,.3),fin=new Date(+P(b.inicio)+3*36e5);
+    const finS=`${fin.getFullYear()}-${String(fin.getMonth()+1).padStart(2,'0')}-${String(fin.getDate()).padStart(2,'0')} ${String(fin.getHours()).padStart(2,'0')}:${String(fin.getMinutes()).padStart(2,'0')}`;
+    return `<div class="fila"><span class="h">${h12(b.inicio)} a ${h12(finS)} <small>${cuandoDia(b.inicio)}</small></span><span class="q"><i class="dot ${cl}"></i>${tx[0].toUpperCase()+tx.slice(1)}</span></div>`}).join('')
+    ||'<div class="vacio">Todavía no hay horarios detectados.</div>';
+  // señal temprana
+  const on=R.precursores.filter(p=>p.arranco), s=$('s-senal');
+  if(on.length){s.className='sc alerta-s';
+    s.innerHTML=`<div class="st" style="color:var(--crit)">⚠️ Ojo</div><div style="font-size:15px">${on.map(p=>`A las ${h12(p.arranco)} se fue la luz en <b>${nombre(p.circuito)}</b>.`).join(' ')} Cuando eso pasa, a ti suele tocarte en las 3 horas siguientes.</div>`;
+  }else{s.className='sc';
+    s.innerHTML=`<div class="st">Señales de aviso</div><div style="font-size:15px">✅ Nada por ahora. Vigilamos ${R.precursores.map(p=>nombre(p.circuito)).join(', ')}: cuando se les va la luz, a ti suele tocarte poco después.</div>`}
+  // últimos cortes
+  $('s-ultimos').innerHTML=(c.registro||[]).slice(0,5).map(r=>{const m=r.minutos,d=m>=60?`${Math.floor(m/60)} h${m%60>=10?' '+m%60+' min':''}`:m+' min';
+    return `<div class="fila"><span class="h">${h12(r.inicio)} a ${r.estado==='en curso'?'…':h12(r.fin)} <small>${cuandoDia(r.inicio)}</small></span><span class="q">${r.estado==='en curso'?'sigue sin luz':d}</span></div>`}).join('')
+    ||'<div class="vacio">Sin cortes registrados.</div>';
+  // confianza
+  const b6=R.backtest&&R.backtest['6h'];
+  $('s-confianza').innerHTML=`<b>¿Qué tan confiable es?</b> `+(b6&&b6.alertas_cumplidas!=null?`Cuando aquí dice «probable», la luz se va más o menos <b>${Math.round(b6.alertas_cumplidas*10)} de cada 10 veces</b>. `:'')+
+    'Corpoelec no publica un horario fijo, así que esto es un estimado con los reportes de los vecinos.';
 }
 
 // ---- modelo de riesgo (solo el circuito propio)
