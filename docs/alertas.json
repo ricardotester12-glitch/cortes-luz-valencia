@@ -1,5 +1,15 @@
 [
 {
+"clave": "aviso|2026-10-25 17:14",
+"tipo": "aviso",
+"circuito": "Cuatricentenario",
+"hora_evento": "2026-10-25 17:14",
+"texto": "⏰ En ~41 min (a las 17:14) empieza un bloque de cortes en Valencia Norte.\nProbabilidad de que le toque a Cuatricentenario: 31%.\nRiesgo en las próximas 3 h: 34%.\nYa arrancó LaManguita, Norte1, que suele apagarse antes que tú.",
+"detectada": "2026-10-25 16:33",
+"enviada": true,
+"correo": false
+},
+{
 "clave": "aviso|2026-10-25 14:20",
 "tipo": "aviso",
 "circuito": "Cuatricentenario",
