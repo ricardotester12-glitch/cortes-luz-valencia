@@ -3,12 +3,15 @@
 Modelo: para cada circuito y hora del día, promedio ponderado (los días recientes pesan más)
 de si hubo corte en esa hora, solo contando los días/horas que el canal realmente cubrió.
 Se suaviza hacia el promedio de toda la zona para circuitos con pocos datos.
+Para el circuito propio se agrega el modelo de riesgo de modelo.py ("riesgo" en data.json).
 """
 import json
+import math
 import os
 from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 
+import modelo
 from collect import DATA, FMT, leer
 
 RAIZ = os.path.dirname(os.path.abspath(__file__))
@@ -61,7 +64,7 @@ def cargar(ahora):
     return cortes, cobertura, urbs, en_curso, registro
 
 
-def lista_registro(eventos):
+def lista_registro(eventos, tope=40):
     """Cortes del más reciente al más viejo, fusionando reportes duplicados del mismo corte."""
     out = []
     for ini, fin, estado in sorted(eventos):
@@ -71,7 +74,7 @@ def lista_registro(eventos):
             continue
         out.append((ini, fin, estado))
     return [{"inicio": a.strftime(FMT), "fin": b.strftime(FMT), "minutos": int((b - a).total_seconds() // 60),
-             "estado": e} for a, b, e in reversed(out)][:40]
+             "estado": e} for a, b, e in reversed(out)][:tope]
 
 
 def matriz(cortes, cobertura, zona):
@@ -149,24 +152,79 @@ def companeros(k, mats_todos):
 
 
 def bloques_zona(registro, zona, hasta, dias=14):
-    """Horas de inicio de los bloques de cortes que se repiten en la zona (primer cuartil de cada grupo)."""
+    """Horas de inicio de los bloques de cortes que se repiten en la zona.
+
+    Busca los picos de la hora de arranque (en tramos de 15 min, suavizados) separados al menos 2,5 h;
+    cada bloque arranca en el primer cuartil de los cortes que caen a ±45 min de su pico (mejor avisar temprano)."""
     mins = sorted(ini.hour * 60 + ini.minute for (z, _), evs in registro.items() if z == zona
                   for ini, _, est in evs if est != "anotado a mano" and (hasta - ini.date()).days <= dias)
-    grupos, actual = [], []
+    cuenta = [0] * 96
     for m in mins:
-        if actual and m - actual[-1] > 40:
-            grupos.append(actual)
-            actual = []
-        actual.append(m)
-    if actual:
-        grupos.append(actual)
-    return [f"{g[len(g) // 4] // 60:02d}:{g[len(g) // 4] % 60:02d}" for g in grupos if len(g) >= 3]  # primer cuartil: mejor avisar temprano
+        cuenta[m // 15] += 1
+    suave = [cuenta[i - 1] + cuenta[i] + cuenta[(i + 1) % 96] for i in range(96)]
+    picos = []
+    for i in sorted(range(96), key=lambda i: -suave[i]):
+        if suave[i] >= 6 and all(min(abs(i - j), 96 - abs(i - j)) >= 10 for j in picos):
+            picos.append(i)
+    out = []
+    for i in picos:
+        cerca = sorted(m for m in mins if min(abs(m - (i * 15 + 7)), 1440 - abs(m - (i * 15 + 7))) <= 45)
+        q = cerca[len(cerca) // 4]
+        out.append(f"{q // 60:02d}:{q % 60:02d}")
+    return sorted(out)
 
 
 def prob_bloque(perfil_c, hhmm):
     """Probabilidad de que el circuito quede sin luz en el bloque que arranca a hhmm."""
     h, m = map(int, hhmm.split(":"))
     return perfil_c[(h + (m + 60) // 60) % 24]
+
+
+def riesgo_propio(registro, en_curso, ahora, bloques):
+    """Modelo de riesgo (modelo.py) para el circuito propio: próximas 3/6 h, curva, bloques y diagnóstico."""
+    k = (CONFIG["zona"], CONFIG["circuito"])
+    if k not in registro:
+        return None
+    evs = modelo.eventos(lista_registro(registro[k], 9999))
+    if k in en_curso:  # mientras siga sin luz, se asume que vuelve a la duración típica
+        evs = [(a, max(ahora + timedelta(minutes=1), a + DUR_TIPICA) if a.strftime(FMT) == en_curso[k] else b)
+               for a, b in evs]
+    otros = {kk[1]: [a for a, _ in modelo.eventos(lista_registro(v, 9999))]
+             for kk, v in registro.items() if kk[0] == k[0] and kk != k}
+    m = modelo.ajustar(evs, otros, ahora)
+    c, desde = modelo.curva(m, evs, ahora, horas=30)
+    sin_luz, futuros = modelo.simular(m, evs, ahora, horas=30)
+    prox = []
+    for b in bloques:
+        ini = datetime.strptime(f"{ahora:%Y-%m-%d} {b}", FMT)
+        for dia in (0, 1):
+            t = ini + timedelta(days=dia)
+            if ahora - timedelta(minutes=30) < t <= ahora + timedelta(hours=24):
+                a, z = t - timedelta(minutes=30), t + timedelta(minutes=90)
+                p = sum(any(a <= x < z for x in f) for f in futuros) / len(futuros)
+                prox.append({"inicio": t.strftime(FMT), "hora": b, "prob": round(p, 3)})
+    activos = []
+    for nombre, efecto, n in m["precursores"]:
+        ult = max((a for a in otros[nombre] if a <= ahora), default=None)
+        en_ventana = ult and modelo.VENTANA_PREVIA[0] <= ahora - ult <= modelo.VENTANA_PREVIA[1]
+        activos.append({"circuito": nombre, "efecto": efecto, "veces": n,
+                        "arranco": ult.strftime(FMT) if en_ventana else None})
+    return {
+        "p3": round(modelo.prob_en(c, ahora, 3), 3), "p6": round(modelo.prob_en(c, ahora, 6), 3),
+        "desde": desde.strftime(FMT), "sin_luz": k in en_curso,
+        "segura_hasta": next((p.strftime(FMT) for p, _, acc in c if acc >= 0.2), None),
+        "mitad_antes_de": next(((p + modelo.PASO).strftime(FMT) for p, _, acc in c if acc >= 0.5), None),
+        "curva": [{"hora": p.strftime(FMT), "riesgo": round(r, 3), "acumulada": round(acc, 3)} for p, r, acc in c],
+        "sin_luz_por_hora": [{"hora": (ahora + modelo.PASO * i).strftime(FMT), "prob": round(p, 3)}
+                             for i, p in enumerate(sin_luz)],
+        "cortes_esperados_24h": round(sum(sum(x < ahora + timedelta(hours=24) for x in f) for f in futuros) / len(futuros), 2),
+        "bloques": sorted(prox, key=lambda x: x["inicio"]),
+        "precursores": activos,
+        "factores": [{"nombre": n, "multiplica": round(math.exp(w), 2)}
+                     for n, w in zip(modelo.NOMBRES, m["w"]) if n not in ("constante", "frecuencia de esa hora")],
+        "backtest": modelo.backtest(evs, otros),
+        "autocorrelacion": modelo.autocorrelacion(evs, ahora),
+    }
 
 
 def main():
@@ -194,6 +252,7 @@ def main():
                 "companeros": companeros(k, {kk: mm for kk, mm in mats.items()}),
                 "dias_con_datos": len(m),
             }
+    salida["riesgo"] = riesgo_propio(registro, en_curso, ahora, salida["bloques"].get(CONFIG["zona"], []))
     os.makedirs(os.path.join(RAIZ, "docs"), exist_ok=True)
     with open(os.path.join(RAIZ, "docs", "data.json"), "w", encoding="utf-8") as f:
         json.dump(salida, f, ensure_ascii=False, separators=(",", ":"))
@@ -202,6 +261,11 @@ def main():
         print(CONFIG["circuito"], "perfil:", " ".join(f"{h}h:{round(x*100)}" for h, x in enumerate(c["perfil"])))
         print("backtest:", c["backtest"], "| compañeros:", c["companeros"])
         print("bloques:", [(b, round(prob_bloque(c["perfil"], b) * 100)) for b in salida["bloques"][CONFIG["zona"]]])
+    r = salida["riesgo"]
+    if r:
+        print(f'riesgo: 3 h {r["p3"]:.0%} | 6 h {r["p6"]:.0%} | segura hasta {r["segura_hasta"]} | bloques',
+              [(b["inicio"][5:], f'{b["prob"]:.0%}') for b in r["bloques"]])
+        print("backtest riesgo:", {h: (b["mejora_vs_por_hora"], b["alertas_cumplidas"]) for h, b in r["backtest"].items()})
 
 
 if __name__ == "__main__":

@@ -1,7 +1,7 @@
 """Alertas de cortes: registro en docs/alertas.json, Telegram y correo.
 
 - "se fue": solo se registra (no se envía); "volvió": se envía. Solo tu circuito.
-- "aviso": ~30 min antes de cada bloque de la zona, con la probabilidad para tu circuito
+- "aviso": ~30 min antes de cada bloque de la zona, con la probabilidad del modelo de riesgo para tu circuito
 - "resumen": pronóstico del día a las 6 a. m.
 
 Telegram: secretos TELEGRAM_TOKEN y TELEGRAM_CHAT_ID.
@@ -83,6 +83,7 @@ def main():
     zona_txt = {"ValenciaNorte": "Valencia Norte", "SanDiego": "San Diego"}.get(zona, zona)
     mio = data["circuitos"].get(f"{zona}/{propio}")
     bloques = data.get("bloques", {}).get(zona, [])
+    riesgo = data.get("riesgo")  # modelo de riesgo (modelo.py); sin él se usa el perfil por hora
     nuevas = []
 
     def nueva(clave, tipo, circuito, hora_evento, texto):
@@ -100,22 +101,35 @@ def main():
 
     # Resumen del día (una vez, entre 5:30 y 8:00)
     if mio and bloques and (5, 30) <= (ahora.hour, ahora.minute) < (8, 0):
-        lineas = [f"• {b}  {round(prob_bloque(mio['perfil'], b) * 100)}%" for b in bloques]
+        if riesgo:
+            lineas = [f"• {b['hora']}  {round(b['prob'] * 100)}%" for b in riesgo["bloques"] if b["inicio"].startswith(hoy)]
+        else:
+            lineas = [f"• {b}  {round(prob_bloque(mio['perfil'], b) * 100)}%" for b in bloques]
         nueva(f"resumen|{hoy}", "resumen", propio, f"{hoy} {ahora:%H:%M}",
-              f"📋 Pronóstico de hoy para {propio} ({zona_txt}).\nProbabilidad de corte en cada bloque:\n" + "\n".join(lineas))
+              f"📋 Pronóstico de hoy para {propio} ({zona_txt}).\nProbabilidad de que el corte arranque en cada bloque:\n"
+              + "\n".join(lineas) + (f"\nRiesgo en las próximas 6 h: {round(riesgo['p6'] * 100)}%." if riesgo else ""))
 
     # Aviso previo: el bloque arranca dentro de los próximos ~AVISO_MIN minutos
     if mio and not mio["en_curso_desde"]:
-        for b in bloques:
-            inicio = datetime.strptime(f"{hoy} {b}", FMT)
-            if inicio < ahora:
-                inicio += timedelta(days=1)
+        if riesgo:
+            proximos = [(datetime.strptime(b["inicio"], FMT), b["hora"], b["prob"]) for b in riesgo["bloques"]]
+        else:
+            proximos = []
+            for b in bloques:
+                inicio = datetime.strptime(f"{hoy} {b}", FMT)
+                proximos.append((inicio + timedelta(days=1) if inicio < ahora else inicio, b, prob_bloque(mio["perfil"], b)))
+        for inicio, b, p in proximos:
             falta = (inicio - ahora).total_seconds() / 60
-            p = prob_bloque(mio["perfil"], b)
             if 0 < falta <= AVISO_MIN + 15 and p >= UMBRAL_AVISO:
+                extra = ""
+                if riesgo:
+                    extra = f"\nRiesgo en las próximas 3 h: {round(riesgo['p3'] * 100)}%."
+                    pre = [x["circuito"] for x in riesgo["precursores"] if x["arranco"]]
+                    if pre:
+                        extra += f"\nYa arrancó {', '.join(pre)}, que suele apagarse antes que tú."
                 nueva(f"aviso|{inicio:%Y-%m-%d %H:%M}", "aviso", propio, inicio.strftime(FMT),
                       f"⏰ En ~{round(falta)} min (a las {b}) empieza un bloque de cortes en {zona_txt}.\n"
-                      f"Probabilidad de que le toque a {propio}: {round(p * 100)}%.")
+                      f"Probabilidad de que le toque a {propio}: {round(p * 100)}%." + extra)
 
     # Se fue / volvió
     if mio and mio["en_curso_desde"]:
@@ -127,8 +141,11 @@ def main():
         corte = next((r for r in mio["registro"] if r["inicio"] == a["hora_evento"] and r["estado"] == "confirmado"), None)
         if corte:
             m = corte["minutos"]
+            seguro = ""
+            if riesgo and riesgo["segura_hasta"] and not riesgo["sin_luz"]:
+                seguro = f"\nLo más probable es que tengas luz al menos hasta las {riesgo['segura_hasta'][11:]}."
             nueva(f'on|{propio}|{a["hora_evento"]}', "volvió", propio, corte["fin"],
-                  f"✅ Volvió la luz en {propio} a las {corte['fin'][11:]} (duró {m // 60}h {m % 60}m).")
+                  f"✅ Volvió la luz en {propio} a las {corte['fin'][11:]} (duró {m // 60}h {m % 60}m)." + seguro)
 
     for a in nuevas:
         a["detectada"] = ahora.strftime(FMT)

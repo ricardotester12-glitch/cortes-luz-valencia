@@ -119,6 +119,31 @@ td.e{font-size:11px;color:var(--ink-3)}
 .bar2 i{display:block;height:100%;background:var(--s5);border-radius:3px}
 .comp{display:grid;gap:10px}
 .nota{font-size:11px;color:var(--ink-3);margin-top:10px}
+/* riesgo próximas horas */
+.rk{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:14px}
+@media (max-width:820px){.rk{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.rk .lbl{font-size:12px;color:var(--ink-2)}
+.rk .big{font-size:34px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1.1;margin-top:2px}
+.rk .big small{font-size:14px;font-weight:500;color:var(--ink-2)}
+.nivel{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;margin-top:4px}
+.nivel.b{background:color-mix(in srgb,var(--good) 14%,transparent);color:var(--good)}
+.nivel.m{background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn-ink)}
+.nivel.a{background:color-mix(in srgb,var(--crit) 14%,transparent);color:var(--crit)}
+.cv{position:relative}
+.cv svg{width:100%;height:150px;display:block;overflow:visible;border-bottom:1px solid var(--line)}
+.precs{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.prec{font-size:12px;padding:3px 9px;border-radius:999px;border:1px solid var(--line);color:var(--ink-2)}
+.prec.on{border-color:var(--crit);color:var(--crit);font-weight:600}
+.ac{display:grid;grid-template-columns:repeat(14,1fr);gap:3px;height:110px;align-items:end;border-bottom:1px solid var(--line)}
+.ac i{display:block;background:var(--s3);border-radius:3px 3px 0 0;min-height:2px}
+.ac i.top{background:var(--s6)}
+.acx{display:grid;grid-template-columns:repeat(14,1fr);gap:3px;font-size:10px;color:var(--ink-3);font-family:var(--mono);text-align:center;margin-top:4px}
+.fx{display:grid;grid-template-columns:1fr auto;gap:6px 10px;font-size:13px;align-items:center}
+.fx b{font-variant-numeric:tabular-nums;text-align:right}
+.cal{display:grid;grid-template-columns:70px 1fr 74px;gap:6px 10px;font-size:12px;align-items:center}
+.cal .tr{position:relative;height:12px;background:var(--s0);border-radius:3px}
+.cal .tr i{position:absolute;top:0;bottom:0;left:0;background:var(--s5);border-radius:3px}
+.cal .tr u{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--crit)}
 .tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--panel);font-size:12px;padding:6px 9px;border-radius:6px;display:none;z-index:9;max-width:260px;line-height:1.35}
 @media (prefers-reduced-motion:no-preference){.gb.curso{animation:pulso 2s ease-in-out infinite}@keyframes pulso{50%{opacity:.7}}}
 </style>
@@ -132,6 +157,20 @@ td.e{font-size:11px;color:var(--ink-3)}
     </div>
     <div><label class="sub" for="sel">Circuito</label><br><select id="sel"></select></div>
   </header>
+
+  <section class="panel" id="riesgo" hidden>
+    <h2>Próximas horas en <span id="r-circ"></span> <small id="r-desde"></small></h2>
+    <div class="rk">
+      <div><div class="lbl">Se va en las próximas 3 h</div><div class="big" id="r-p3">…</div><span class="nivel" id="r-n3"></span></div>
+      <div><div class="lbl">Se va en las próximas 6 h</div><div class="big" id="r-p6">…</div><span class="nivel" id="r-n6"></span></div>
+      <div><div class="lbl">Luz bastante segura hasta</div><div class="big" id="r-seg">…</div><div class="sub" id="r-seg-s"></div></div>
+      <div><div class="lbl">50% de que se vaya antes de</div><div class="big" id="r-mit">…</div><div class="sub" id="r-mit-s"></div></div>
+    </div>
+    <div class="cv" id="r-cv"></div>
+    <div class="franjas" id="r-bl"></div>
+    <div class="sub" style="margin-top:12px">Circuitos que suelen apagarse 30 min a 3 h antes que tú (en rojo: arrancaron hace poco):</div>
+    <div class="precs" id="r-pre"></div>
+  </section>
 
   <section class="grid">
     <div class="panel kpi c3"><div class="lbl">Tu circuito ahora</div><div class="val" id="k-estado">…</div><div class="sub" id="k-estado-s"></div></div>
@@ -163,7 +202,7 @@ td.e{font-size:11px;color:var(--ink-3)}
 
   <section class="grid">
     <div class="panel c5">
-      <h2>Próximas 24 horas <small id="f-circ"></small></h2>
+      <h2><span id="f-tit">Próximas 24 horas</span> <small id="f-circ"></small></h2>
       <div class="fc" id="fc"><div class="ref"><span>50%</span></div></div>
       <div class="fax" id="fax"></div>
       <div class="franjas" id="franjas"></div>
@@ -189,6 +228,25 @@ td.e{font-size:11px;color:var(--ink-3)}
       <h2>Se apagan contigo</h2>
       <div class="comp" id="comp"></div>
       <div class="nota" id="bt-nota"></div>
+    </div>
+  </section>
+
+  <section class="grid" id="r-diag" hidden>
+    <div class="panel c4">
+      <h2>¿Hay un ciclo de días?</h2>
+      <div class="ac" id="r-ac"></div>
+      <div class="acx" id="r-acx"></div>
+      <div class="nota" id="r-ac-n"></div>
+    </div>
+    <div class="panel c4">
+      <h2>Qué mueve el riesgo</h2>
+      <div class="fx" id="r-fx"></div>
+      <div class="nota">Cuánto se multiplica el riesgo de esa hora frente a lo normal para esa hora del día. Menos de 1 lo baja.</div>
+    </div>
+    <div class="panel c4">
+      <h2>¿Se cumplen los porcentajes? <small>próximas 6 h</small></h2>
+      <div class="cal" id="r-cal"></div>
+      <div class="nota" id="r-bt"></div>
     </div>
   </section>
 
@@ -277,13 +335,17 @@ function render(){
   $('f-circ').textContent='· '+c.circuito;
   const fc=$('fc');fc.querySelectorAll('.fb').forEach(e=>e.remove());
   const horas=Array.from({length:24},(_,i)=>H+i);
-  horas.forEach((h,i)=>{const p=c.perfil[h%24],el=document.createElement('div');el.className='fb'+(p>=.5?' alta':'')+(i===0?' ahora':'');el.style.height=Math.max(p*100,1.5)+'%';
+  // circuito propio: probabilidad simulada por el modelo de riesgo; los demás: promedio de cada hora
+  const sim=D.riesgo&&c.circuito===D.principal&&c.zona===D.zona?D.riesgo.sin_luz_por_hora:null;
+  $('f-tit').textContent=sim?'Probabilidad de estar sin luz, próximas 24 horas':'Próximas 24 horas';
+  horas.forEach((h,i)=>{const p=sim?sim[i].prob:c.perfil[h%24],el=document.createElement('div');el.className='fb'+(p>=.5?' alta':'')+(i===0?' ahora':'');el.style.height=Math.max(p*100,1.5)+'%';
     bindTip(el,`<b>${h>=24?'Mañana':'Hoy'} ${hh(h)} a ${hh(h+1)}</b><br>${pct(p)} de probabilidad de corte`);fc.appendChild(el)});
   $('fax').innerHTML=horas.map((h,i)=>`<span>${i===0?'ya':(h%3===0?h%24:'')}</span>`).join('');
-  const bl=(D.bloques&&D.bloques[c.zona])||[];
+  const bl=sim?[]:(D.bloques&&D.bloques[c.zona])||[];
   const pb=b=>{const [h,m]=b.split(':').map(Number);return c.perfil[(h+Math.floor((m+60)/60))%24]};
   $('franjas').innerHTML=bl.length?'<div class="sub" style="width:100%">Bloques de cortes de la zona y probabilidad de que le toque a '+c.circuito+':</div>'+
     bl.map(b=>{const p=pb(b);return `<div class="franja"${p>=.5?' style="border-color:var(--s5)"':''}><b>${b}</b> · ${pct(p)}</div>`}).join('')
+    :sim?`<div class="sub">Simulación de 400 días posibles con el modelo de riesgo. Cortes esperados en 24 h: ${String(D.riesgo.cortes_esperados_24h).replace('.',',')}.</div>`
     :'<div class="vacio">Todavía no hay suficientes cortes para detectar los bloques de la zona.</div>';
 
   // ---- matriz de la zona
@@ -311,6 +373,64 @@ function render(){
     :'<div class="vacio">Faltan datos para saberlo.</div>';
   $('comp').querySelectorAll('[data-k]').forEach(el=>el.onclick=()=>pick(el.dataset.k));
   $('bt-nota').textContent=c.companeros.length?'Porcentaje de horas sin luz que comparten con este circuito. Si a ellos se les va la luz, prepárate.':'';
+  renderRiesgo(c,now);
+}
+
+// ---- modelo de riesgo (solo el circuito propio)
+function renderRiesgo(c,now){
+  const R=D.riesgo, mio=R&&c.circuito===D.principal&&c.zona===D.zona;
+  $('riesgo').hidden=!mio;$('r-diag').hidden=!mio;
+  if(!mio)return;
+  const nivel=(el,p)=>{el.className='nivel '+(p<.25?'b':p<.5?'m':'a');el.textContent=p<.25?'bajo':p<.5?'medio':'alto'};
+  const cuando=s=>{const d=s.slice(0,10)===D.actualizado.slice(0,10)?'hoy':'mañana';return `${s.slice(11)} <small>${d}</small>`};
+  $('r-circ').textContent=c.circuito;
+  $('r-desde').textContent=R.sin_luz?'· sin luz ahora; se calcula desde que vuelva (~'+R.desde.slice(11)+')':'· calculado a las '+D.actualizado.slice(11);
+  $('r-p3').textContent=pct(R.p3);nivel($('r-n3'),R.p3);
+  $('r-p6').textContent=pct(R.p6);nivel($('r-n6'),R.p6);
+  $('r-seg').innerHTML=R.segura_hasta?cuando(R.segura_hasta):'–';
+  $('r-seg-s').textContent=R.segura_hasta?'hasta ahí la probabilidad acumulada queda bajo 20%':'';
+  $('r-mit').innerHTML=R.mitad_antes_de?cuando(R.mitad_antes_de):'> 30 h';
+  $('r-mit-s').textContent=R.sin_luz?'contando desde que vuelva la luz':'si no se ha ido antes';
+  const pb=R.bloques.filter(b=>P(b.inicio)>=now).sort((a,b)=>b.prob-a.prob)[0];
+  if(pb){$('k-prox').innerHTML=`${pb.hora} <small>${pct(pb.prob)}</small>`;$('k-prox-s').textContent=(pb.inicio.slice(0,10)===D.actualizado.slice(0,10)?'hoy':'mañana')+': el bloque más probable de las próximas 24 h'}
+  const v6=R.backtest['6h'];
+  if(v6&&v6.alertas_cumplidas!=null){$('k-bt').innerHTML=`${pct(v6.alertas_cumplidas)} <small>a 6 h</small>`;$('k-bt-s').textContent=`cuando marcó 50% o más, se fue la luz (${v6.alertas} casos)`}
+
+  // curva acumulada + riesgo por hora
+  const cv=R.curva.slice(0,24), W=1000, Hh=150, n=cv.length;
+  const x=i=>i/(n)*W, y=p=>Hh-4-p*(Hh-10);
+  const bw=W/n-4;
+  let svg=`<svg viewBox="0 0 ${W} ${Hh}" preserveAspectRatio="none" role="img" aria-label="Probabilidad acumulada de corte en las próximas 24 horas">`;
+  [.25,.5,.75].forEach(g=>svg+=`<line x1="0" x2="${W}" y1="${y(g)}" y2="${y(g)}" stroke="var(--line)" stroke-dasharray="4 4" vector-effect="non-scaling-stroke"/>`);
+  cv.forEach((p,i)=>{const marg=i?p.acumulada-cv[i-1].acumulada:p.acumulada;
+    svg+=`<rect class="hr" data-i="${i}" x="${x(i)+2}" y="${y(marg)}" width="${bw}" height="${Hh-4-y(marg)}" rx="3" fill="var(--s2)"/>`});
+  svg+=`<polyline fill="none" stroke="var(--s6)" stroke-width="2.5" vector-effect="non-scaling-stroke" points="${cv.map((p,i)=>`${x(i+1)},${y(p.acumulada)}`).join(' ')}"/>`;
+  svg+='</svg>';
+  const eje=`<div class="fax" style="grid-template-columns:repeat(${n},1fr)">${cv.map((p,i)=>`<span>${i===0?'ya':(+p.hora.slice(11,13))%3===0?+p.hora.slice(11,13)+'h':''}</span>`).join('')}</div>`;
+  $('r-cv').innerHTML=svg+eje+'<div class="legend" style="margin-top:4px"><span><i style="background:var(--s6);height:3px"></i>Probabilidad acumulada de que se vaya</span><span><i style="background:var(--s2)"></i>Probabilidad de que arranque en esa hora</span></div>';
+  $('r-cv').querySelectorAll('.hr').forEach(el=>{const i=+el.dataset.i,p=cv[i],marg=i?p.acumulada-cv[i-1].acumulada:p.acumulada;
+    bindTip(el,`<b>${fmt(p.hora)}</b><br>Arranque en esa hora: ${pct(marg)}<br>Acumulada hasta ahí: ${pct(p.acumulada)}`)});
+  $('r-bl').innerHTML=R.bloques.length?'<div class="sub" style="width:100%">Bloques de la zona en las próximas 24 h y probabilidad de que tu corte arranque en cada uno:</div>'+
+    R.bloques.map(b=>`<div class="franja"${b.prob>=.3?' style="border-color:var(--crit)"':''}><b>${b.hora}</b> ${b.inicio.slice(0,10)===D.actualizado.slice(0,10)?'':'<small class="sub">mañana</small> '}· ${pct(b.prob)}</div>`).join(''):'';
+  $('r-pre').innerHTML=R.precursores.length?R.precursores.map(p=>`<span class="prec${p.arranco?' on':''}" title="${p.veces} cortes analizados">${p.circuito} · ×${String(p.efecto).replace('.',',')}${p.arranco?' · arrancó '+p.arranco.slice(11):''}</span>`).join(''):'<span class="vacio">Faltan datos.</span>';
+
+  // periodicidad
+  const ac=R.autocorrelacion, mx=Math.max(.05,...ac.map(a=>a.valor));
+  const top=[...ac].sort((a,b)=>b.valor-a.valor).slice(0,2).map(a=>a.dias);
+  $('r-ac').innerHTML=ac.map(a=>`<i class="${top.includes(a.dias)?'top':''}" style="height:${Math.max(0,a.valor)/mx*100}%" data-d="${a.dias}" data-v="${a.valor}"></i>`).join('');
+  $('r-acx').innerHTML=ac.map(a=>`<span>${a.dias}</span>`).join('');
+  $('r-ac').querySelectorAll('i').forEach(el=>bindTip(el,`Cada ${el.dataset.d} día${el.dataset.d>1?'s':''}: ${el.dataset.v.replace('.',',')}`));
+  const best=[...ac].sort((a,b)=>b.valor-a.valor)[0];
+  $('r-ac-n').textContent=`Cuánto se parecen los cortes de un día a los de X días antes (eje: días). Lo más alto: cada ${best.dias} días (${String(best.valor).replace('.',',')}). Por debajo de 0,2 es una señal débil: no hay un ciclo fijo marcado.`;
+
+  // factores
+  $('r-fx').innerHTML=R.factores.map(f=>`<span>${f.nombre[0].toUpperCase()+f.nombre.slice(1)}</span><b style="color:${f.multiplica>=1.15?'var(--crit)':f.multiplica<=.87?'var(--good)':'var(--ink-2)'}">×${String(f.multiplica).replace('.',',')}</b>`).join('');
+
+  // calibración y backtest
+  const b6=R.backtest['6h'], b3=R.backtest['3h'];
+  if(b6){$('r-cal').innerHTML='<span class="sub">Predijo</span><span class="sub">Pasó de verdad (línea roja: lo predicho)</span><span class="sub">Casos</span>'+b6.calibracion.map(t=>`<span>${t.tramo}</span><div class="tr"><i style="width:${t.real*100}%"></i><u style="left:${t.predicho*100}%"></u></div><span class="sub">${pct(t.real)} de ${t.n}</span>`).join('');
+    const mj=h=>{const v=Math.round(R.backtest[h].mejora_vs_por_hora*100);return (v>=0?'+':'')+v+'%'};
+    $('r-bt').textContent=`Validado hacia adelante en ${b6.horas} horas: cada día se predijo solo con los anteriores. Cuando dijo 50% o más, se fue la luz el ${pct(b6.alertas_cumplidas)} de las veces (6 h)${b3.alertas_cumplidas!=null?' y el '+pct(b3.alertas_cumplidas)+' (3 h)':''}. Frente a usar solo la hora del día: ${mj('3h')} a 3 h, ${mj('6h')} a 6 h.`}
 }
 </script>
 </body>
