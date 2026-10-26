@@ -1011,7 +1011,7 @@ ValenciaNorte,SanJose,2026-10-25 17:22,2026-10-25 20:51,2026-10-25 18:49,"Flores
 Naguanagua,Manantial,2026-10-25 17:25,2026-10-25 20:53,2026-10-25 19:10,"CascoCentral, ElRincón, Guayabal, LaBegoña, LosGuayabitos, Manantial, Tazajal"
 ValenciaNorte,Miranda,2026-10-25 17:26,2026-10-25 20:58,2026-10-25 20:53,"AguaBlanca, CampoAlegre, CentroNorte, Kerdell, LaArboleda, LosSauces, Miranda, SantaCecilia"
 ValenciaNorte,Guaparo2,2026-10-25 18:29,2026-10-25 20:16,2026-10-25 18:49,"Carabobo, LaAlegría, LasClavelinas, Majay, Mañonguito, TrigalNorte"
-ValenciaNorte,Guaparo2,2026-10-25 18:34,,2026-10-26 19:23,TrigalNorte
+ValenciaNorte,Guaparo2,2026-10-25 18:34,,2026-10-26 19:52,TrigalNorte
 ValenciaNorte,Casupo,2026-10-25 20:49,2026-10-26 00:02,2026-10-25 21:39,"ElBosque, ElParral, GranjaLasPalmas, LaManguita, LosNisperos, TerrazasdeLosNisperos"
 ValenciaNorte,Guaparo1,2026-10-25 20:49,2026-10-25 21:23,2026-10-25 21:08,"Guaparo, LaCeiba, LaViña, Mañonguito, PiedrasPintadas, TrigalNorte"
 ValenciaNorte,Norte2,2026-10-25 20:49,2026-10-26 00:04,2026-10-26 00:12,"ElRecreo, LaAlegría, LaViña"
@@ -1056,16 +1056,18 @@ ValenciaNorte,Viñedo1,2026-10-26 15:16,2026-10-26 18:24,2026-10-26 18:23,"ElVi�
 ValenciaNorte,Prebo,2026-10-26 15:17,2026-10-26 18:25,2026-10-26 18:24,"AguaBlanca, Camoruco, CampoAlegre, Prebo1"
 ValenciaNorte,SanJose,2026-10-26 15:19,2026-10-26 18:30,2026-10-26 18:30,"Flores, LosColorados, San José"
 ValenciaNorte,Ceiba,2026-10-26 15:20,2026-10-26 18:30,2026-10-26 18:30,"Camoruco, LasAcacias, LosSauces, Miranda"
-ValenciaNorte,Valencia1,2026-10-26 15:20,,2026-10-26 19:23,"Flores, LaRosarito, LomasdelEste"
+ValenciaNorte,Valencia1,2026-10-26 15:20,,2026-10-26 19:52,"Flores, LaRosarito, LomasdelEste"
 ValenciaNorte,Miranda,2026-10-26 15:35,2026-10-26 18:26,2026-10-26 18:37,"AguaBlanca, CampoAlegre, CentroNorte, Kerdell, LaArboleda, LosSauces, Miranda, SantaCecilia"
-ValenciaNorte,Chimeneas,2026-10-26 17:00,,2026-10-26 19:23,"LaIsabela, LaTrigaleña, LasChimeneas"
-ValenciaNorte,Guaparo1,2026-10-26 17:15,,2026-10-26 19:23,"Guaparo, LaCeiba, LaViña, Mañonguito, PiedrasPintadas, TrigalNorte"
-ValenciaNorte,Trigal,2026-10-26 17:22,,2026-10-26 19:23,"TrigalCentro, TrigalSur"
-ValenciaNorte,Casupo,2026-10-26 18:20,,2026-10-26 19:23,"ElBosque, ElParral, GranjaLasPalmas, LaManguita, LosNisperos, TerrazasdeLosNisperos"
-ValenciaNorte,TrigalSur,2026-10-26 18:21,,2026-10-26 19:23,LaTrigaleña
-ValenciaNorte,Norte1,2026-10-26 18:22,,2026-10-26 19:23,"Ateneo, Camoruco, CampoAlegre, Caribbean, Chaguaramal, LosNaranjos, Prebol, SanJosedeTarbes, ValleBlanco"
-ValenciaNorte,SabanaLarga,2026-10-26 18:22,,2026-10-26 19:23,"AguaBlanca, Prebo1, Prebo2, Prebo3, Sabanalarga, VallesdeCamoruco"
-ValenciaNorte,AvBolivar,2026-10-26 18:23,,2026-10-26 19:23,"Ateneo, Camoruco, Caribbean, CentroNorte, ElViñedo, Flores, Kerdell, LasAcacias, LasChimeneas, LosColorados, LosNaranjos, LosSauces, Miranda, PadreAlfonso, Prebol, San José"
+ValenciaNorte,Chimeneas,2026-10-26 17:00,,2026-10-26 19:52,"LaIsabela, LaTrigaleña, LasChimeneas"
+ValenciaNorte,Guaparo1,2026-10-26 17:15,,2026-10-26 19:52,"Guaparo, LaCeiba, LaViña, Mañonguito, PiedrasPintadas, TrigalNorte"
+ValenciaNorte,Trigal,2026-10-26 17:22,,2026-10-26 19:52,"TrigalCentro, TrigalSur"
+ValenciaNorte,Casupo,2026-10-26 18:20,,2026-10-26 19:52,"ElBosque, ElParral, GranjaLasPalmas, LaManguita, LosNisperos, TerrazasdeLosNisperos"
+ValenciaNorte,TrigalSur,2026-10-26 18:21,,2026-10-26 19:52,LaTrigaleña
+ValenciaNorte,Norte1,2026-10-26 18:22,,2026-10-26 19:52,"Ateneo, Camoruco, CampoAlegre, Caribbean, Chaguaramal, LosNaranjos, Prebol, SanJosedeTarbes, ValleBlanco"
+ValenciaNorte,SabanaLarga,2026-10-26 18:22,,2026-10-26 19:52,"AguaBlanca, Prebo1, Prebo2, Prebo3, Sabanalarga, VallesdeCamoruco"
+ValenciaNorte,AvBolivar,2026-10-26 18:23,,2026-10-26 19:52,"Ateneo, Camoruco, Caribbean, CentroNorte, ElViñedo, Flores, Kerdell, LasAcacias, LasChimeneas, LosColorados, LosNaranjos, LosSauces, Miranda, PadreAlfonso, Prebol, San José"
 ValenciaNorte,Casupo,2026-10-26 18:23,,2026-10-26 18:41,"ElBosque, ElParral, GranjaLasPalmas, LaManguita, LosNisperos, TerrazasdeLosNisperos"
-ValenciaNorte,Viñedo2,2026-10-26 18:25,,2026-10-26 19:23,LaViña
-ValenciaNorte,Soublette2,2026-10-26 18:29,,2026-10-26 19:23,"LosNisperos, Oviedo, PadreAlfonso"
+ValenciaNorte,Viñedo2,2026-10-26 18:25,,2026-10-26 19:52,LaViña
+ValenciaNorte,Soublette2,2026-10-26 18:29,,2026-10-26 19:52,"LosNisperos, Oviedo, PadreAlfonso"
+ValenciaNorte,Viñedo1,2026-10-26 19:50,,2026-10-26 19:52,"ElViñedo, LaViña, PadreAlfonso, Prebo1"
+ValenciaNorte,Prebo,2026-10-26 19:51,,2026-10-26 19:52,"AguaBlanca, Camoruco, CampoAlegre, Prebo1"
