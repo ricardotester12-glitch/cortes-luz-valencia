@@ -1011,7 +1011,7 @@ ValenciaNorte,SanJose,2026-10-25 17:22,2026-10-25 20:51,2026-10-25 18:49,"Flores
 Naguanagua,Manantial,2026-10-25 17:25,2026-10-25 20:53,2026-10-25 19:10,"CascoCentral, ElRincón, Guayabal, LaBegoña, LosGuayabitos, Manantial, Tazajal"
 ValenciaNorte,Miranda,2026-10-25 17:26,2026-10-25 20:58,2026-10-25 20:53,"AguaBlanca, CampoAlegre, CentroNorte, Kerdell, LaArboleda, LosSauces, Miranda, SantaCecilia"
 ValenciaNorte,Guaparo2,2026-10-25 18:29,2026-10-25 20:16,2026-10-25 18:49,"Carabobo, LaAlegría, LasClavelinas, Majay, Mañonguito, TrigalNorte"
-ValenciaNorte,Guaparo2,2026-10-25 18:34,,2026-10-27 01:00,TrigalNorte
+ValenciaNorte,Guaparo2,2026-10-25 18:34,,2026-10-27 07:59,TrigalNorte
 ValenciaNorte,Casupo,2026-10-25 20:49,2026-10-26 00:02,2026-10-25 21:39,"ElBosque, ElParral, GranjaLasPalmas, LaManguita, LosNisperos, TerrazasdeLosNisperos"
 ValenciaNorte,Guaparo1,2026-10-25 20:49,2026-10-25 21:23,2026-10-25 21:08,"Guaparo, LaCeiba, LaViña, Mañonguito, PiedrasPintadas, TrigalNorte"
 ValenciaNorte,Norte2,2026-10-25 20:49,2026-10-26 00:04,2026-10-26 00:12,"ElRecreo, LaAlegría, LaViña"
@@ -1091,3 +1091,8 @@ SanDiego,Morro2,2026-10-26 21:38,2026-10-27 03:38,2026-10-27 03:41,"LaEsmeralda,
 ValenciaNorte,Casupo,2026-10-26 22:03,2026-10-26 22:25,2026-10-27 00:28,"ElBosque, ElParral, GranjaLasPalmas, LaManguita, LosNisperos, TerrazasdeLosNisperos"
 ValenciaNorte,Casupo,2026-10-26 22:12,,2026-10-26 22:13,"ElBosque, ElParral, GranjaLasPalmas, LaManguita, LosNisperos, TerrazasdeLosNisperos"
 ValenciaNorte,Prebo,2026-10-26 23:17,2026-10-26 23:20,2026-10-26 23:18,"AguaBlanca, Camoruco, CampoAlegre, Prebo1"
+ValenciaNorte,Prebo,2026-10-27 07:46,,2026-10-27 07:59,"AguaBlanca, Camoruco, CampoAlegre, Prebo1"
+ValenciaNorte,SabanaLarga,2026-10-27 07:50,,2026-10-27 07:59,"AguaBlanca, Prebo1, Prebo2, Prebo3, Sabanalarga, VallesdeCamoruco"
+ValenciaNorte,Viñedo1,2026-10-27 07:50,,2026-10-27 07:59,"ElViñedo, LaViña, PadreAlfonso, Prebo1"
+ValenciaNorte,AvBolivar,2026-10-27 07:52,,2026-10-27 07:59,"Ateneo, Camoruco, Caribbean, CentroNorte, ElViñedo, Flores, Kerdell, LasAcacias, LasChimeneas, LosColorados, LosNaranjos, LosSauces, Miranda, PadreAlfonso, Prebol, San José"
+ValenciaNorte,Solar,2026-10-27 07:52,,2026-10-27 07:59,"ColinasdeGuataparo, ElParral, HatoRoyal, Prebo3, Solar, Sta.MariadelCampo, VillaLagunaClub, VillaLagunaNorte"
