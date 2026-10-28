@@ -1011,7 +1011,7 @@ ValenciaNorte,SanJose,2026-10-25 17:22,2026-10-25 20:51,2026-10-25 18:49,"Flores
 Naguanagua,Manantial,2026-10-25 17:25,2026-10-25 20:53,2026-10-25 19:10,"CascoCentral, ElRincón, Guayabal, LaBegoña, LosGuayabitos, Manantial, Tazajal"
 ValenciaNorte,Miranda,2026-10-25 17:26,2026-10-25 20:58,2026-10-25 20:53,"AguaBlanca, CampoAlegre, CentroNorte, Kerdell, LaArboleda, LosSauces, Miranda, SantaCecilia"
 ValenciaNorte,Guaparo2,2026-10-25 18:29,2026-10-25 20:16,2026-10-25 18:49,"Carabobo, LaAlegría, LasClavelinas, Majay, Mañonguito, TrigalNorte"
-ValenciaNorte,Guaparo2,2026-10-25 18:34,,2026-10-28 14:17,TrigalNorte
+ValenciaNorte,Guaparo2,2026-10-25 18:34,,2026-10-28 14:36,TrigalNorte
 ValenciaNorte,Casupo,2026-10-25 20:49,2026-10-26 00:02,2026-10-25 21:39,"ElBosque, ElParral, GranjaLasPalmas, LaManguita, LosNisperos, TerrazasdeLosNisperos"
 ValenciaNorte,Guaparo1,2026-10-25 20:49,2026-10-25 21:23,2026-10-25 21:08,"Guaparo, LaCeiba, LaViña, Mañonguito, PiedrasPintadas, TrigalNorte"
 ValenciaNorte,Norte2,2026-10-25 20:49,2026-10-26 00:04,2026-10-26 00:12,"ElRecreo, LaAlegría, LaViña"
@@ -1158,7 +1158,7 @@ ValenciaNorte,Guaparo2,2026-10-27 23:43,2026-10-28 01:41,2026-10-28 01:40,"Carab
 ValenciaNorte,SabanaLarga,2026-10-28 00:06,2026-10-28 01:36,2026-10-28 00:56,"AguaBlanca, Prebo1, Prebo2, Prebo3, Sabanalarga, VallesdeCamoruco"
 SanDiego,Castillito2,2026-10-28 08:10,2026-10-28 14:17,2026-10-28 13:23,"CdIndustrialUnion, ParqueComercialIndustrialCastillito"
 SanDiego,SanDiego2,2026-10-28 08:10,2026-10-28 14:17,2026-10-28 13:23,"CdIndustrialUnion, ParqueComercialIndustrialCastillito"
-SanDiego,Tulipan,2026-10-28 08:10,,2026-10-28 14:17,"CountryParkVillaserino, ElRemanso, ElTulipan, MonteCarmelo, MonteSinai, TrigaldeSanDiego, VallesdelNogal, VillaJardin"
+SanDiego,Tulipan,2026-10-28 08:10,2026-10-28 14:19,2026-10-28 14:17,"CountryParkVillaserino, ElRemanso, ElTulipan, MonteCarmelo, MonteSinai, TrigaldeSanDiego, VallesdelNogal, VillaJardin"
 ValenciaNorte,Cuatricentenario,2026-10-28 08:10,2026-10-28 11:14,2026-10-28 09:50,"ElBosque, LosMangos, ParqueMirador, TerrazasdeLosNisperos"
 ValenciaNorte,Viñedo2,2026-10-28 08:10,2026-10-28 11:12,2026-10-28 09:50,LaViña
 SanDiego,Castillito1,2026-10-28 08:11,2026-10-28 14:16,2026-10-28 13:23,"ParqueComercialIndustrialCastillito, ZonaIndustrialSanDiego"
@@ -1166,14 +1166,17 @@ Naguanagua,Carabobo,2026-10-28 08:12,2026-10-28 09:47,2026-10-28 08:15,"Granja1,
 ValenciaNorte,AvBolivar,2026-10-28 08:12,2026-10-28 11:15,2026-10-28 09:50,"Ateneo, Camoruco, Caribbean, CentroNorte, ElViñedo, Flores, Kerdell, LasAcacias, LasChimeneas, LosColorados, LosNaranjos, LosSauces, Miranda, PadreAlfonso, Prebol, San José"
 ValenciaNorte,Carabobo,2026-10-28 08:12,2026-10-28 09:47,2026-10-28 08:17,"Carabobo, ElRecreo, Guaparo, LaCeiba, Majay"
 ValenciaNorte,Trigal,2026-10-28 08:13,2026-10-28 11:21,2026-10-28 11:17,"TrigalCentro, TrigalSur"
-ValenciaNorte,Soublette2,2026-10-28 08:14,,2026-10-28 14:17,"LosNisperos, Oviedo, PadreAlfonso"
-Naguanagua,Granja,2026-10-28 11:03,,2026-10-28 13:35,"LasQuintas1, LasQuintas2, LasQuintas3"
-Naguanagua,Manantial,2026-10-28 11:04,,2026-10-28 13:35,"CascoCentral, ElRincón, Guayabal, LaBegoña, LosGuayabitos, Manantial, Tazajal"
-SanDiego,Morro1,2026-10-28 13:22,,2026-10-28 14:17,"ElPoblado, LagunaClub, LosAndes1y2, Morro1, ResidenciasMontemayor, Sansur, ValledeOro, Yuma1, Yuma2, Yuma26"
-Naguanagua,Barbula,2026-10-28 13:23,,2026-10-28 13:35,"CascoCentral, Guayabal, LaCampiña1, LasQuintas2, LosGuayabitos"
-ValenciaNorte,Solar,2026-10-28 13:25,,2026-10-28 14:17,"ColinasdeGuataparo, ElParral, HatoRoyal, Prebo3, Solar, Sta.MariadelCampo, VillaLagunaClub, VillaLagunaNorte"
-ValenciaNorte,Ceiba,2026-10-28 13:26,,2026-10-28 14:17,"Camoruco, LasAcacias, LosSauces, Miranda"
-ValenciaNorte,Prebo,2026-10-28 13:38,,2026-10-28 14:17,"AguaBlanca, Camoruco, CampoAlegre, Prebo1"
-ValenciaNorte,Casupo,2026-10-28 14:01,,2026-10-28 14:17,"ElBosque, ElParral, GranjaLasPalmas, LaManguita, LosNisperos, TerrazasdeLosNisperos"
-ValenciaNorte,TrigalSur,2026-10-28 14:12,,2026-10-28 14:17,LaTrigaleña
-ValenciaNorte,Yuma,2026-10-28 14:13,,2026-10-28 14:17,TrigalSur
+ValenciaNorte,Soublette2,2026-10-28 08:14,2026-10-28 14:25,2026-10-28 14:17,"LosNisperos, Oviedo, PadreAlfonso"
+Naguanagua,Granja,2026-10-28 11:03,2026-10-28 14:23,2026-10-28 13:35,"LasQuintas1, LasQuintas2, LasQuintas3"
+Naguanagua,Manantial,2026-10-28 11:04,2026-10-28 14:22,2026-10-28 13:35,"CascoCentral, ElRincón, Guayabal, LaBegoña, LosGuayabitos, Manantial, Tazajal"
+SanDiego,Morro1,2026-10-28 13:22,,2026-10-28 14:47,"ElPoblado, LagunaClub, LosAndes1y2, Morro1, ResidenciasMontemayor, Sansur, ValledeOro, Yuma1, Yuma2, Yuma26"
+Naguanagua,Barbula,2026-10-28 13:23,,2026-10-28 14:26,"CascoCentral, Guayabal, LaCampiña1, LasQuintas2, LosGuayabitos"
+ValenciaNorte,Solar,2026-10-28 13:25,2026-10-28 14:35,2026-10-28 14:17,"ColinasdeGuataparo, ElParral, HatoRoyal, Prebo3, Solar, Sta.MariadelCampo, VillaLagunaClub, VillaLagunaNorte"
+ValenciaNorte,Ceiba,2026-10-28 13:26,2026-10-28 14:33,2026-10-28 14:17,"Camoruco, LasAcacias, LosSauces, Miranda"
+ValenciaNorte,Prebo,2026-10-28 13:38,2026-10-28 14:33,2026-10-28 14:17,"AguaBlanca, Camoruco, CampoAlegre, Prebo1"
+ValenciaNorte,Casupo,2026-10-28 14:01,,2026-10-28 14:36,"ElBosque, ElParral, GranjaLasPalmas, LaManguita, LosNisperos, TerrazasdeLosNisperos"
+ValenciaNorte,TrigalSur,2026-10-28 14:12,,2026-10-28 14:36,LaTrigaleña
+ValenciaNorte,Yuma,2026-10-28 14:13,,2026-10-28 14:36,TrigalSur
+Naguanagua,Hospital,2026-10-28 14:15,,2026-10-28 14:26,"CDJardínMañongo, Mañongo, PalmaReal"
+ValenciaNorte,Norte1,2026-10-28 14:20,,2026-10-28 14:36,"Ateneo, Camoruco, CampoAlegre, Caribbean, Chaguaramal, LosNaranjos, Prebol, SanJosedeTarbes, ValleBlanco"
+SanDiego,ValleVerde,2026-10-28 14:35,2026-10-28 14:45,,"Aseprovica, BrisasdelValle, CCFindeSiglo, CentroSan Diego, ChaletsCountry, ElParque, ElPolvero, LaMorochaIV, LasMorochas, Macomaco, ResidenciasOrion, Terranostra, UJAP, ValleFrescoNorte, VillasLasCaracaras"
