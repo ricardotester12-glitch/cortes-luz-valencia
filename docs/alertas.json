@@ -1,5 +1,15 @@
 [
 {
+"clave": "aviso|2026-10-28 20:26",
+"tipo": "aviso",
+"circuito": "Cuatricentenario",
+"hora_evento": "2026-10-28 20:26",
+"texto": "⏰ En ~17 min (a las 20:26) empieza un bloque de cortes en Valencia Norte.\nProbabilidad de que le toque a Cuatricentenario: 30%.\nRiesgo en las próximas 3 h: 31%.\nYa arrancó Viñedo1, Norte1, que suele apagarse antes que tú.",
+"detectada": "2026-10-28 20:09",
+"enviada": true,
+"correo": false
+},
+{
 "clave": "aviso|2026-10-28 17:00",
 "tipo": "aviso",
 "circuito": "Cuatricentenario",
