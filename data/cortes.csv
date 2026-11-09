@@ -1696,7 +1696,7 @@ SanDiego,ValleVerde,2026-11-07 19:11,2026-11-07 20:47,2026-11-07 19:12,"Aseprovi
 ValenciaNorte,Cuatricentenario,2026-11-08 01:56,,2026-11-08 02:50,"ElBosque, LosMangos, ParqueMirador, TerrazasdeLosNisperos"
 ValenciaNorte,Guaparo1,2026-11-08 02:05,,2026-11-08 09:47,"Guaparo, LaCeiba, LaViña, Mañonguito, PiedrasPintadas, TrigalNorte"
 ValenciaNorte,Guaparo1,2026-11-08 02:10,2026-11-08 17:40,,Guaparo
-ValenciaNorte,Prebo,2026-11-08 02:25,,2026-11-08 21:47,"AguaBlanca, Camoruco, CampoAlegre, Prebo1"
+ValenciaNorte,Prebo,2026-11-08 02:25,,2026-11-09 02:51,"AguaBlanca, Camoruco, CampoAlegre, Prebo1"
 ValenciaNorte,Valencia1,2026-11-08 02:40,,2026-11-08 09:47,"Flores, LaRosarito, LomasdelEste"
 ValenciaNorte,Solar,2026-11-08 04:30,2026-11-08 08:34,,"ColinasdeGuataparo, ElParral, ElSolar, HatoRoyal, Prebo3, Sta.MariadelCampo, VillaLagunaClub, VillaLagunaNorte"
 ValenciaNorte,Guataparo,2026-11-08 04:45,2026-11-08 09:28,,"CampoAlegre, LosColorados, ValleBlanco, VallesdeCamoruco"
@@ -1705,13 +1705,13 @@ ValenciaNorte,Cuatricentenario,2026-11-08 07:32,,2026-11-08 09:47,"ElBosque, Los
 SanDiego,Petrocasa/Cumaca,2026-11-08 09:01,2026-11-08 09:38,,"CasaVerde, CentroSan Diego, Colonial, Josefinas1, Josefinas2, LasTrinitarias, ManantialDorado, ParqueCampestreLaCumaca, PaulaBerbecia, PiedeMonteChalet, PuebloLaCumaca, SabanadelMedio, TerrazasdeSanDiegoCountry, TizianaVilla, UAM, VillasLaPonderosa, VillasManantialCountry, VillasSanDiegoCountryClub, VillasSanRafael, VillasdeAlcalá, VillasdelCampo, ZPI12"
 SanDiego,Castillito2,2026-11-08 13:42,2026-11-08 19:42,2026-11-08 16:52,"CdIndustrialUnion, ParqueComercialIndustrialCastillito"
 ValenciaNorte,Guaparo1,2026-11-08 16:20,2026-11-08 17:41,,"Guaparo, LaCeiba, LaViña, Mañonguito, PiedrasPintadas, TrigalNorte"
-SanDiego,Castillito1,2026-11-08 18:20,,2026-11-08 20:59,"ParqueComercialIndustrialCastillito, ZonaIndustrialSanDiego"
+SanDiego,Castillito1,2026-11-08 18:20,2026-11-08 23:07,2026-11-08 20:59,"ParqueComercialIndustrialCastillito, ZonaIndustrialSanDiego"
 ValenciaNorte,Norte1,2026-11-08 18:24,2026-11-08 20:03,,"Ateneo, Camoruco, CampoAlegre, Caribbean, Chaguaramal, LosNaranjos, Prebol, SanJosedeTarbes, SantaCecilia, ValleBlanco"
 ValenciaNorte,Norte2,2026-11-08 18:24,,2026-11-08 21:47,"ElRecreo, LaAlegría, LaViña"
-Naguanagua,Hospital,2026-11-08 18:25,,2026-11-08 20:03,"CDJardínMañongo, Mañongo, PalmaReal"
-Naguanagua,Cafetal,2026-11-08 18:26,,2026-11-08 20:03,"BarrioUnion, Cafetal, ElPinar, LaBegoña, LaCampiña2, LosCandiles, Naranjal1, Naranjal2, Rotafé, Tarapio"
+Naguanagua,Hospital,2026-11-08 18:25,2026-11-08 22:29,2026-11-08 20:03,"CDJardínMañongo, Mañongo, PalmaReal"
+Naguanagua,Cafetal,2026-11-08 18:26,2026-11-08 22:10,2026-11-08 20:03,"BarrioUnion, Cafetal, ElPinar, LaBegoña, LaCampiña2, LosCandiles, Naranjal1, Naranjal2, Rotafé, Tarapio"
 ValenciaNorte,Guaparo2,2026-11-08 18:26,,2026-11-08 18:27,"Carabobo, LaAlegría, LasClavelinas, Majay, Mañonguito, TrigalNorte"
-Naguanagua,Cidra,2026-11-08 18:27,,2026-11-08 20:03,"Caprenco, LaCidra, Tarapio"
+Naguanagua,Cidra,2026-11-08 18:27,2026-11-08 22:55,2026-11-08 20:03,"Caprenco, LaCidra, Tarapio"
 Naguanagua,Manantial,2026-11-08 18:31,2026-11-08 19:54,,"CascoCentral, ElRincón, Guayabal, LaBegoña, LosGuayabitos, Tazajal"
 Naguanagua,Carabobo,2026-11-08 18:35,2026-11-08 19:58,,"Granja1, Granja2"
 Naguanagua,Granja,2026-11-08 18:35,2026-11-08 20:03,,"LasQuintas1, LasQuintas2, LasQuintas3"
@@ -1722,5 +1722,5 @@ ValenciaNorte,AvBolivar,2026-11-08 18:41,2026-11-08 20:41,,"Ateneo, Camoruco, Ca
 ValenciaNorte,Viñedo1,2026-11-08 18:42,2026-11-08 20:41,,"ElViñedo, LaViña, PadreAlfonso, Prebo1"
 ValenciaNorte,TrigalSur,2026-11-08 18:43,2026-11-08 20:43,,LaTrigaleña
 ValenciaNorte,Guaparo2,2026-11-08 20:35,,2026-11-08 21:47,"Carabobo, LaAlegría, LasClavelinas, Majay, Mañonguito, TrigalNorte"
-ValenciaNorte,Guaparo2,2026-11-08 20:41,,2026-11-08 21:47,TrigalNorte
-SanDiego,Morro1,2026-11-08 20:57,,2026-11-08 20:59,"ElPoblado, LagunaClub, LosAndes1y2, Morro1, ResidenciasMontemayor, Sansur, ValledeOro, Yuma1, Yuma2, Yuma26"
+ValenciaNorte,Guaparo2,2026-11-08 20:41,2026-11-09 01:15,2026-11-08 21:47,TrigalNorte
+SanDiego,Morro1,2026-11-08 20:57,2026-11-08 23:27,2026-11-08 20:59,"ElPoblado, LagunaClub, LosAndes1y2, Morro1, ResidenciasMontemayor, Sansur, ValledeOro, Yuma1, Yuma2, Yuma26"
