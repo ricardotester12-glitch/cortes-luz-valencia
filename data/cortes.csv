@@ -1763,4 +1763,29 @@ ValenciaNorte,Norte2,2026-11-09 21:05,2026-11-10 01:08,2026-11-09 22:00,"ElRecre
 SanDiego,Mantex,2026-11-09 21:06,2026-11-10 00:48,,"AltosdelParaiso, CampoSolo, CdBernardoNuñez, LosArales, Paraiso, SantaAna, ZPI13"
 ValenciaNorte,Yuma,2026-11-09 21:08,2026-11-10 01:01,2026-11-09 22:00,TrigalSur
 SanDiego,Tulipan,2026-11-09 21:09,2026-11-10 03:09,2026-11-09 22:11,"CountryParkVillaserino, ElRemanso, ElTulipan, MonteCarmelo, MonteSinai, TrigaldeSanDiego, VallesdelNogal, VillaJardin, VillasLasCaracaras"
-Naguanagua,Cidra,2026-11-09 21:55,,2026-11-09 22:07,"Caprenco, LaCidra, Tarapio"
+Naguanagua,Cidra,2026-11-09 21:55,2026-11-10 01:32,2026-11-09 22:07,"Caprenco, LaCidra, Tarapio"
+SanDiego,Morro2,2026-11-09 22:35,2026-11-10 10:08,,Morro2
+ValenciaNorte,Solar,2026-11-10 06:05,2026-11-10 10:12,,"ColinasdeGuataparo, ElParral, ElSolar, HatoRoyal, Prebo3, Sta.MariadelCampo, VillaLagunaClub, VillaLagunaNorte"
+ValenciaNorte,Solar,2026-11-10 06:08,2026-11-10 10:12,,ColinasdeGuataparo
+ValenciaNorte,Cuatricentenario,2026-11-10 12:04,2026-11-10 12:40,2026-11-10 12:08,"ElBosque, LosMangos, ParqueMirador, TerrazasdeLosNisperos"
+ValenciaNorte,Casupo,2026-11-10 12:05,2026-11-10 12:40,2026-11-10 12:08,"ElBosque, ElParral, GranjaLasPalmas, LosNisperos, LaManguita, TerrazasdeLosNisperos"
+ValenciaNorte,Viñedo2,2026-11-10 12:05,2026-11-10 12:40,2026-11-10 12:08,LaViña
+SanDiego,Tulipan,2026-11-10 12:08,,2026-11-10 12:12,"CountryParkVillaserino, ElRemanso, ElTulipan, MonteCarmelo, MonteSinai, TrigaldeSanDiego, VallesdelNogal, VillaJardin, VillasLasCaracaras"
+Naguanagua,Hospital,2026-11-10 12:11,2026-11-10 12:43,,"CDJardínMañongo, Mañongo, PalmaReal"
+SanDiego,Mantex,2026-11-10 12:11,,2026-11-10 12:12,"AltosdelParaiso, CampoSolo, CdBernardoNuñez, LosArales, Paraiso, SantaAna, ZPI13"
+Naguanagua,Granja,2026-11-10 12:30,2026-11-10 12:43,,"LasQuintas1, LasQuintas2, LasQuintas3"
+ValenciaNorte,Prebo,2026-11-10 12:44,,2026-11-10 13:15,"AguaBlanca, Camoruco, CampoAlegre, Prebo1"
+ValenciaNorte,Casupo,2026-11-10 12:45,,2026-11-10 13:15,"ElBosque, ElParral, GranjaLasPalmas, LosNisperos, LaManguita, TerrazasdeLosNisperos"
+ValenciaNorte,Ceiba,2026-11-10 12:45,,2026-11-10 13:15,"Camoruco, Kerdell, LasAcacias, Miranda"
+ValenciaNorte,Chimeneas,2026-11-10 12:45,,2026-11-10 13:15,"LaIsabela, LaTrigaleña, LasChimeneas"
+ValenciaNorte,Guataparo,2026-11-10 12:45,,2026-11-10 13:15,"CampoAlegre, LosColorados, ValleBlanco, VallesdeCamoruco"
+ValenciaNorte,Manguita,2026-11-10 12:45,,2026-11-10 13:15,"Altos de Guataparo, GuataparoCountryClub, LomasdelCountry, LaManguita, Terrazas del Country"
+ValenciaNorte,SabanaLarga,2026-11-10 12:45,,2026-11-10 13:15,"AguaBlanca, Prebo1, Prebo2, Prebo3, SabanaLarga, VallesdeCamoruco"
+ValenciaNorte,SanJose,2026-11-10 12:45,,2026-11-10 13:15,"Flores, LosColorados, SanJose"
+ValenciaNorte,Solar,2026-11-10 12:45,,2026-11-10 13:15,"ColinasdeGuataparo, ElParral, ElSolar, HatoRoyal, Prebo3, Sta.MariadelCampo, VillaLagunaClub, VillaLagunaNorte"
+ValenciaNorte,Soublette2,2026-11-10 12:45,,2026-11-10 13:15,"LosNisperos, Oviedo, PadreAlfonso"
+ValenciaNorte,TrigalSur,2026-11-10 12:45,,2026-11-10 13:15,LaTrigaleña
+ValenciaNorte,Viñedo1,2026-11-10 12:45,,2026-11-10 13:15,"ElViñedo, LaViña, PadreAlfonso, Prebo1"
+ValenciaNorte,Viñedo2,2026-11-10 12:45,,2026-11-10 13:15,LaViña
+ValenciaNorte,AvBolivar,2026-11-10 12:46,,2026-11-10 13:15,"Ateneo, Camoruco, Caribbean, CentroNorte, ElViñedo, Flores, Kerdell, LasAcacias, LasChimeneas, LosColorados, LosNaranjos, LosSauces, Miranda, PadreAlfonso, Prebol, SanJose"
+ValenciaNorte,Cuatricentenario,2026-11-10 12:46,,2026-11-10 13:15,"ElBosque, LosMangos, ParqueMirador, TerrazasdeLosNisperos"
