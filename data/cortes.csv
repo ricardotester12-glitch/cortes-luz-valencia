@@ -1759,7 +1759,8 @@ ValenciaNorte,Viñedo2,2026-11-09 18:21,,2026-11-09 22:00,LaViña
 Naguanagua,Carabobo,2026-11-09 18:23,2026-11-09 21:35,,"Granja1, Granja2"
 ValenciaNorte,Carabobo,2026-11-09 18:23,2026-11-09 21:35,,"Carabobo, ElRecreo, Guaparo, LaCeiba, Majay"
 ValenciaNorte,Trigal,2026-11-09 20:59,2026-11-09 21:15,,"TrigalCentro, TrigalSur"
-ValenciaNorte,Norte2,2026-11-09 21:05,,2026-11-09 22:00,"ElRecreo, LaAlegría, LaViña"
-ValenciaNorte,Yuma,2026-11-09 21:08,,2026-11-09 22:00,TrigalSur
-SanDiego,Tulipan,2026-11-09 21:09,,2026-11-09 22:11,"CountryParkVillaserino, ElRemanso, ElTulipan, MonteCarmelo, MonteSinai, TrigaldeSanDiego, VallesdelNogal, VillaJardin, VillasLasCaracaras"
+ValenciaNorte,Norte2,2026-11-09 21:05,2026-11-10 01:08,2026-11-09 22:00,"ElRecreo, LaAlegría, LaViña"
+SanDiego,Mantex,2026-11-09 21:06,2026-11-10 00:48,,"AltosdelParaiso, CampoSolo, CdBernardoNuñez, LosArales, Paraiso, SantaAna, ZPI13"
+ValenciaNorte,Yuma,2026-11-09 21:08,2026-11-10 01:01,2026-11-09 22:00,TrigalSur
+SanDiego,Tulipan,2026-11-09 21:09,2026-11-10 03:09,2026-11-09 22:11,"CountryParkVillaserino, ElRemanso, ElTulipan, MonteCarmelo, MonteSinai, TrigaldeSanDiego, VallesdelNogal, VillaJardin, VillasLasCaracaras"
 Naguanagua,Cidra,2026-11-09 21:55,,2026-11-09 22:07,"Caprenco, LaCidra, Tarapio"
