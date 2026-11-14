@@ -1907,7 +1907,7 @@ SanDiego,ValleVerde,2026-11-13 13:55,2026-11-13 20:10,2026-11-13 17:21,"Aseprovi
 ValenciaNorte,Casupo,2026-11-13 13:55,2026-11-13 16:48,,"ElBosque, ElParral, GranjaLasPalmas, LosNisperos, LaManguita, TerrazasdeLosNisperos"
 ValenciaNorte,Manguita,2026-11-13 13:55,2026-11-13 16:52,,"Altos de Guataparo, GuataparoCountryClub, LomasdelCountry, LaManguita, Terrazas del Country"
 SanDiego,Morro2,2026-11-13 13:57,2026-11-13 20:05,2026-11-13 17:21,"LaEsmeralda, Morro2, TerrazasdeSanDiego"
-SanDiego,Petrocasa/Cumaca,2026-11-13 13:57,,2026-11-13 21:11,"CasaVerde, CentroSan Diego, Colonial, Josefinas1, Josefinas2, LasTrinitarias, ManantialDorado, ParqueCampestreLaCumaca, PaulaBerbecia, PiedeMonteChalet, PuebloLaCumaca, SabanadelMedio, TerrazasdeSanDiegoCountry, TizianaVilla, UAM, VillasLaPonderosa, VillasManantialCountry, VillasSanDiegoCountryClub, VillasSanRafael, VillasdeAlcalá, VillasdelCampo, ZPI12"
+SanDiego,Petrocasa/Cumaca,2026-11-13 13:57,2026-11-13 17:55,2026-11-13 21:11,"CasaVerde, CentroSan Diego, Colonial, Josefinas1, Josefinas2, LasTrinitarias, ManantialDorado, ParqueCampestreLaCumaca, PaulaBerbecia, PiedeMonteChalet, PuebloLaCumaca, SabanadelMedio, TerrazasdeSanDiegoCountry, TizianaVilla, UAM, VillasLaPonderosa, VillasManantialCountry, VillasSanDiegoCountryClub, VillasSanRafael, VillasdeAlcalá, VillasdelCampo, ZPI12"
 Naguanagua,Granja,2026-11-13 13:58,2026-11-13 19:58,2026-11-13 16:48,"LasQuintas1, LasQuintas2, LasQuintas3"
 SanDiego,Cumaca,2026-11-13 14:00,2026-11-13 20:00,2026-11-13 17:21,"Abadia, Amazonia, Bosqueserino, CentroComercialeIndustrialMonteReal, ComplejoAntonioPadrón, ComplejoIndustrialVenecia, CondominiosMonteserino, DivinoNiño, LasMajaguas, LosFrailes, MonteserinoBloques, MonteserinoCasas, SanFrancisco, SantaCruz, SeminarioArquidiocesano, Vajagreda, Valparaiso, Villa Paraiso, VillaBahia, VillaMaporal, VillasLaFontana, ZISanAntonio"
 ValenciaNorte,TrigalSur,2026-11-13 14:53,,2026-11-13 17:58,LaTrigaleña
@@ -1924,12 +1924,17 @@ ValenciaNorte,Cuatricentenario,2026-11-13 17:57,2026-11-13 20:53,2026-11-13 17:5
 ValenciaNorte,Viñedo2,2026-11-13 18:06,2026-11-13 20:54,,LaViña
 ValenciaNorte,Trigal,2026-11-13 19:54,,2026-11-13 21:11,"TrigalCentro, TrigalSur"
 ValenciaNorte,Ceiba,2026-11-13 19:55,,2026-11-13 21:11,"Camoruco, Kerdell, LasAcacias, Miranda"
-ValenciaNorte,Norte2,2026-11-13 19:55,,2026-11-13 21:11,"ElRecreo, LaAlegría, LaViña"
-SanDiego,Castillito1,2026-11-13 20:00,,2026-11-13 21:11,"ParqueComercialIndustrialCastillito, ZonaIndustrialSanDiego"
-SanDiego,Esmeralda,2026-11-13 20:00,,2026-11-13 21:11,"LaEsmeralda, LasGaviotas, LomasdeLaEsmeralda, ValleVerde"
-SanDiego,SanDiego2,2026-11-13 20:00,,2026-11-13 21:11,ParqueComercialIndustrialCastillito
+ValenciaNorte,Norte2,2026-11-13 19:55,2026-11-14 02:13,2026-11-13 21:11,"ElRecreo, LaAlegría, LaViña"
+ValenciaNorte,Soublette2,2026-11-13 19:58,2026-11-14 02:13,,"LosNisperos, Oviedo, PadreAlfonso"
+SanDiego,Castillito1,2026-11-13 20:00,2026-11-14 02:20,2026-11-13 21:11,"ParqueComercialIndustrialCastillito, ZonaIndustrialSanDiego"
+SanDiego,Esmeralda,2026-11-13 20:00,2026-11-14 02:00,2026-11-13 21:11,"LaEsmeralda, LasGaviotas, LomasdeLaEsmeralda, ValleVerde"
+SanDiego,SanDiego2,2026-11-13 20:00,2026-11-14 02:20,2026-11-13 21:11,ParqueComercialIndustrialCastillito
 ValenciaNorte,Casupo,2026-11-13 20:00,,2026-11-13 21:11,"ElBosque, ElParral, GranjaLasPalmas, LosNisperos, LaManguita, TerrazasdeLosNisperos"
-ValenciaNorte,Valencia1,2026-11-13 20:01,,2026-11-13 21:11,"Flores, LaRosarito, LomasdelEste"
-Naguanagua,Carabobo,2026-11-13 20:02,,2026-11-13 21:12,"Granja1, Granja2"
-ValenciaNorte,Carabobo,2026-11-13 20:02,,2026-11-13 21:11,"Carabobo, ElRecreo, Guaparo, LaCeiba, Majay"
-SanDiego,Castillito2,2026-11-13 20:55,,2026-11-13 21:11,"CdIndustrialUnion, ParqueComercialIndustrialCastillito"
+ValenciaNorte,Valencia1,2026-11-13 20:01,2026-11-14 02:12,2026-11-13 21:11,"Flores, LaRosarito, LomasdelEste"
+Naguanagua,Carabobo,2026-11-13 20:02,2026-11-14 02:13,2026-11-13 21:12,"Granja1, Granja2"
+ValenciaNorte,Carabobo,2026-11-13 20:02,2026-11-14 02:13,2026-11-13 21:11,"Carabobo, ElRecreo, Guaparo, LaCeiba, Majay"
+SanDiego,Castillito2,2026-11-13 20:55,2026-11-14 02:55,2026-11-13 21:11,"CdIndustrialUnion, ParqueComercialIndustrialCastillito"
+ValenciaNorte,Manguita,2026-11-13 22:46,2026-11-14 02:30,,"Altos de Guataparo, GuataparoCountryClub, LomasdelCountry, LaManguita, Terrazas del Country"
+ValenciaNorte,Viñedo1,2026-11-13 22:46,2026-11-14 02:31,,"ElViñedo, LaViña, PadreAlfonso, Prebo1"
+ValenciaNorte,SabanaLarga,2026-11-13 22:47,2026-11-14 02:31,,"AguaBlanca, Prebo1, Prebo2, Prebo3, SabanaLarga, VallesdeCamoruco"
+ValenciaNorte,TrigalSur,2026-11-13 22:49,2026-11-14 02:20,,LaTrigaleña
